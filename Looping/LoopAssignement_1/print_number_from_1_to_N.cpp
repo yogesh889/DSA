@@ -8,6 +8,7 @@ int main(){
     int N;
     cin>>N;
 
+    //Iterating over the loop untill i value becomes <= N
     for(int i=1; i<=N; i++){
         cout<<i<<" ";
     }
