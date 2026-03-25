@@ -1,23 +1,29 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-int main(){
+int lcm_of_number(int m, int n) {
 
-    int a, b;
+    // start from the maximum of m and n
+    int num = (m > n) ? m : n;
 
-    cin>>a>>b;
+    // infinite loop until LCM is found
+    for (;; num++) {
 
-    int ans = 1;
-
-    int max = (a>b)? a: b;
-
-    for(int i=1; i<=max; i++){
-        if(a%i == 0 && b%i == 0){
-            ans *= i;
+        // if num is divisible by both m and n → it is LCM
+        if (num % m == 0 && num % n == 0) {
+            return num;  // return LCM
         }
     }
+}
 
-    cout<<ans<<endl;
+int main() {
 
-    return 0;
+    int a, b;  // input numbers
+    cin >> a >> b;
+
+    int lcm = lcm_of_number(a, b);  // compute LCM
+
+    cout << lcm << endl;  // print result
+
+    return 0;  // end of program
 }
