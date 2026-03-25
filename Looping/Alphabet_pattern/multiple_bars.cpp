@@ -36,7 +36,7 @@ int main() {
                 cout << "* ";
 
             // Middle horizontal line (left side)
-            else if (i == 4 && j <= 5)
+            else if (i == 5 && j <= 5)
                 cout << "* ";
 
             // Bottom horizontal line
