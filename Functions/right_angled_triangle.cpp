@@ -72,18 +72,21 @@ void butter_fly(){
         cout<<endl;
     }
 
-    // for(int i=n-1; i>=1; i--){
-    //     for(int j=1; j<=i; j++){
-    //         cout<<"*";
-    //     }
-    //     for(int s=1; s<=2*n-2*i; s++){
-    //         cout<<" ";
-    //     }
-    //     for(int j=2*n-i+1; j<=2*n; j++){
-    //         cout<<"*";
-    //     }
-    //     cout<<endl;
-    // }
+    for(int i=n-1; i>=1; i--){
+        for(int j=1; j<=i; j++){
+            cout<<"*";
+        }
+        for(int s=1; s<=2*n-2*i; s++){
+            cout<<" ";
+        }
+        // for(int j=2*n-i+1; j<=2*n; j++){
+        //     cout<<"*";
+        // }
+        for(int j=1; j<=i; j++){
+            cout<<"*";
+        }
+        cout<<endl;
+    }
 }
 
 

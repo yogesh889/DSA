@@ -3,17 +3,24 @@ using namespace std;
 
 int main(){
 
-    string str = "hello world";
-    string temp1 = "";
-    for(int i=0; i<str.size(); i++){
-        cout<<str[i]<<" ";
-        
-        temp1 = temp1 + str[i];
-        if(str[i] == " "){
-            string temp2 = temp1;
-            temp1 = "";
-        }
-    }
-    cout<<temp2+temp1<<endl;
+    char arr[] = {'h', 'e', 'l', 'l', 'o'};
 
+    int st = 0;
+    int en = (sizeof(arr)/sizeof(arr[0]))-1;
+
+    while(st <= en){
+        char temp = arr[en];
+        arr[en] = arr[st];
+        arr[st] = temp;
+        st++;
+        en--;
+    }
+
+    for(int i=0; i<5; i++){
+        cout<<arr[i]<<" ";
+    }
+
+
+
+    return 0;
 }
