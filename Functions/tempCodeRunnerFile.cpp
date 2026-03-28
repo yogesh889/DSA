@@ -1,1 +1,3 @@
-value = value*((i-j)/(j+1));
+or(int j=m; j>=1; j--){
+        //     cout<<" ";
+        // }
