@@ -1,1 +1,1 @@
-ptr1+ptr3
+value = value*((i-j)/(j+1));
