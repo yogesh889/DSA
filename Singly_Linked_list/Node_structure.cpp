@@ -5,12 +5,12 @@ class Node{
     public: 
         int data; //member variable
         Node* next; //member variable
-    //constructor to initialize a new node with data
-    Node(int data){
-        // using (this->data = data) here because member variable and constructor paramenter have same naming 
-        // and to avoid conflict between naming we have used this pointer
-        this->data = data; 
-        this->next = nullptr;
+        //constructor to initialize a new node with data
+        Node(int data){
+            // using (this->data = data) here because member variable and constructor paramenter have same naming 
+            // and to avoid conflict between naming we have used this pointer
+            this->data = data; 
+            this->next = nullptr;
     }
 
     // Node(int data){
