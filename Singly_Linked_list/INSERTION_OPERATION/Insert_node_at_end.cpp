@@ -2,7 +2,7 @@
 using namespace std;
 
 class Node{
-    public:
+    public: 
         int data;
         Node* next;
 
@@ -12,11 +12,18 @@ class Node{
         }
 };
 
-Node* insert_At_Front(Node* head, int x){
+Node* insert_at_end(Node* head, int x){
+    Node* curr = head;
     Node* newNode = new Node(x);
-    // 5,1001   --->   10,3001
-    newNode->next = head;
-    return newNode;
+
+    if(head == nullptr){
+        return newNode;
+    }
+    while(curr->next != nullptr){
+        curr = curr->next;
+    }
+    curr->next = newNode;
+    return head;
 }
 
 void print_linked_list(Node* head){
@@ -30,22 +37,21 @@ void print_linked_list(Node* head){
 
 int main(){
 
+    // Node* head = new Node(10)
     Node* head;
-    
     head = new Node(10);
     head->next = new Node(20);
     head->next->next = new Node(30);
     head->next->next->next = new Node(40);
-    //previously head is pointing to 10
+    head->next->next->next->next = new Node(50);
 
     int x;
     cin>>x;
 
-    // but now head is pointing to newNode
-    // head --> 5, 1001  -->  10, 3001
-    head = insert_At_Front(head, x);
+    head = insert_at_end(head, x);
 
     print_linked_list(head);
+
 
     return 0;
 }
