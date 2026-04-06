@@ -5,6 +5,7 @@ int main() {
     char ch = 'A';
     char* ptr = &ch;
 
+
     cout << "Before: " << (void*)ptr << endl;
 
     ptr++;

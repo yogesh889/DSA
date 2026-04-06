@@ -31,6 +31,8 @@ int main(){
     cout<<ad1<<endl;
 
 
+    
+
 
     // this will only work when we have 
     cout<<(void*)ad1<<endl;

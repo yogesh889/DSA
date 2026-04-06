@@ -10,6 +10,12 @@ int main(){
 
     cout<<"address of 2nd element of array: "<<arr+1<<endl; //give address of 2nd element of array;
     cout<<"value of 2nd element: "<<*(arr+1)<<endl; // give 2nd element of array;
+
+    cout<<"address of 2nd element of array: "<<arr+2<<endl; //give address of 3nd element of array;
+    cout<<"value of 2nd element: "<<*(arr+2)<<endl; // give 3nd element of array;
+    
+    cout<<"address of 2nd element of array: "<<arr+3<<endl; //give address of 4nd element of array;
+    cout<<"value of 2nd element: "<<*(arr+3)<<endl; // give 4nd element of array;
     
     return 0;
 }
