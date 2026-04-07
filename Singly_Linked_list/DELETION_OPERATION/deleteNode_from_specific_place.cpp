@@ -12,9 +12,7 @@ class Node{
         }
 };
 
-Node* delete_node_from_end(Node* head){
-    Node* temp = head;
-
+Node* delete_from_specific_position(Node* head, int x){
     // If no node is present
     if(head == nullptr){
         return nullptr;
@@ -25,24 +23,32 @@ Node* delete_node_from_end(Node* head){
         delete head;
         return nullptr;
     }
-    while(temp->next->next != nullptr){
+
+    Node* temp = head;
+    int cnt = 1;
+    while(cnt < x-1 && temp->next != nullptr){
         temp = temp->next;
+        cnt++;
     }
 
-    delete temp->next;
-    temp->next = nullptr;
+    // If position invalid
+    if(temp->next == nullptr){
+        return head;
+    }
+
+    // Node to delete
+    temp->next = temp->next->next;
+    temp->next->next = nullptr;
     return head;
 }
 
 void print_linked_list(Node* head){
-    Node* temp = head;
-    while(temp != nullptr){
-        cout<<temp->data<<" -> ";
-        temp = temp->next;
+    while(head != nullptr){
+        cout<<head->data<<" -> ";
+        head = head->next;
     }
     cout<<"NULL";
 }
-
 
 int main(){
 
@@ -52,7 +58,10 @@ int main(){
     head->next->next = new Node(30);
     head->next->next->next = new Node(40);
 
-    head = delete_node_from_end(head);
+    int x;
+    cin>>x;
+
+    head = delete_from_specific_position(head, x);
 
     print_linked_list(head);
 

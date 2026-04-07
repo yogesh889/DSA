@@ -13,7 +13,6 @@ class Node{
 };
 
 Node* insert_at_specific_position(int p, int v, Node* head){
-
     Node* newNode = new Node(v);
 
     // Case 1: Insert at beginning
@@ -44,6 +43,7 @@ Node* insert_at_specific_position(int p, int v, Node* head){
 }
 
 void print_linked_list(Node* head){
+    
     Node* curr = head;
     while(curr != nullptr){
         cout<<curr->data<<" -> ";

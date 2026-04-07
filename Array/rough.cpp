@@ -48,7 +48,7 @@ int main(){
     cout<<*(arr+1)<<endl; //3
     cout<<*(arr+2)<<endl; //1
 
-    cout<<<arr[0]<<endl;
+    cout<<arr[0]<<endl;
     cout<<arr[1]<<endl;
     cout<<arr[2]<<endl;
 

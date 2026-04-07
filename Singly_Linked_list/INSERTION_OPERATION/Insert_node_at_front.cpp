@@ -47,7 +47,7 @@ int main(){
     // head --> 5, 1001  -->  10, 3001
     // In the below function we have get the newNode and here we have point head towards newNode
     // insert_at_front ==> will return value 5, 1001
-    head = insert_At_Front(head, x); // head = 5, 1001
+    head = insert_At_Front(head, x); // head = 5, 1001 ==> now here head is pointing to new node
 
     print_linked_list(head);
 

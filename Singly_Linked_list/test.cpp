@@ -10,13 +10,14 @@ public:
         this->data = data;
         this->next = nullptr;
     }
+
 };
 
 int main(){
     int n;
 
-    Node* head = nullptr;
-    Node* tail = nullptr;
+    Node* head = nullptr; // Head point to the stating element
+    Node* tail = nullptr; // tail pointer will increase if we add new node to it
 
     for(int i = 0; i < 5; i++){
         cin >> n;

@@ -29,6 +29,7 @@ void print_linked_list(Node* head){
     Node* curr = head;
     while(curr != nullptr){
         cout<<curr->data;
+        cout<<" -> ";
         if(curr->next == nullptr){
             cout<<" -> ";
         }
@@ -40,11 +41,11 @@ void print_linked_list(Node* head){
 int main(){
 
     Node* head; // head is not guranteed to be nullptr, it's just some random value
-    // head = new Node(10);
-    // head->next = new Node(20);
-    // head->next->next = new Node(30);
-    // head->next->next->next = new Node(40);
-    // head->next->next->next->next = new Node(50);
+    head = new Node(10);
+    head->next = new Node(20);
+    head->next->next = new Node(30);
+    head->next->next->next = new Node(40);
+    head->next->next->next->next = new Node(50);
 
     head = delete_from_beginning(head);
 
