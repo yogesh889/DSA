@@ -1,13 +1,13 @@
 #include<iostream>
 using namespace std;
 
-void insertion_sort(int* arr, int n){
+void selection_sort(int* arr, int n){
     for(int i=1; i<n; i++){
         int key = arr[i];
         int j = i-1;
         while(j>=0 && key<arr[j]){
             arr[j+1] = arr[j];
-            j--;
+            j = j-1;
         }
         arr[j+1] = key;
     }
@@ -16,18 +16,17 @@ void insertion_sort(int* arr, int n){
 void print(int* arr, int n){
     for(int i=0; i<n; i++){
         cout<<*(arr+i)<<" ";
-        // cout<<arr[i]<<" ";
     }
-    
 }
 
 int main(){
-    int arr[4] = {5, 2, 1, 3};
-    int n = sizeof(arr)/sizeof(int);
 
-    insertion_sort(arr, n);
+    int arr[5] = {3, 5, 2, 0, 1};
+    int size = sizeof(arr)/sizeof(int);
 
-    print(arr, n);
+    selection_sort(arr, size);
+
+    print(arr, size);
 
     return 0;
 }

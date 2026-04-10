@@ -3,7 +3,7 @@ using namespace std;
 
 void swap(int* p, int* q){
     int temp = *p;
-    *p = *q; 
+    *p = *q;
     *q = temp;
 }
 
@@ -25,8 +25,7 @@ void print(int* arr, int n){
 
 int main(){
 
-    int arr[5] = {3, 2, 5, 0, 1};
-
+    int arr[5] = {4, 3, 0, 1, 2};
     int size = sizeof(arr)/sizeof(int);
 
     bubble_sort(arr, size);
