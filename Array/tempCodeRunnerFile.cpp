@@ -1,3 +1,7 @@
-    // int a = 5;
-    // cout<<&a<<endl;
-    // cout<<a<<endl;
+
+        for(int j = i + 1; j < n; j++){
+            if(arr[i] > 0 && arr[j] < 0){
+                swap(arr[i], arr[j]);
+            }
+        }
+    }

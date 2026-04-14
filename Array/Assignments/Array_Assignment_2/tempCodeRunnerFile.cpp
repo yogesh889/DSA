@@ -1,6 +1,5 @@
 
-    //     cout << arr1[i++] << " ";
-    // }
-    // while(j < n2){
-    //     cout << arr2[j++] << " ";
-    // }
+//     int temp = *p;
+//     *p = *q;
+//     *q = temp;
+// }
