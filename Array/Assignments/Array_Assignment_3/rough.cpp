@@ -1,33 +1,35 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-void swap(int* p, int* q){
-    int temp = *p;
-    *p = *q; 
-    *q = temp;
-}
+int main() {
+    int arr1[3] = {1, 2, 3};//m
+    int arr2[3] = {3, 4, 5};//n
 
-int main(){
-    
-    int arr[5] = {5, 2, 1, 0};
-    
-    int n = sizeof(arr)/sizeof(int);
-    
-    for(int i=0; i<n; i++){
-        for(int j=0; j<n-i-1; j++){
-            if(arr[j] > arr[j+1]){
-                swap(arr[j], arr[j+1]);
-            }
+    int i = 0, j = 0;
+    int m=3, n=3;
+
+    while(i<m && j<n){
+        if(arr1[i] == arr2[j]){
+            cout<<arr1[i]<<" ";
+            i++;
+            j++;
+        }else if(arr1[i] < arr2[j]){
+            cout<<arr1[i]<<" ";
+            i++;
+        }else{
+            cout<<arr2[j]<<" ";
+            j++;
         }
     }
 
-    cout<<arr[0]<<endl;
-    cout<<arr[1]<<endl;
-    
-    for(int i=0; i<n-1; i++){
-        
-        cout<<arr[i]<<" ";
+    while(i<m){
+        cout<<arr1[i]<<" ";
+        i++;
     }
-    
+    while(j<n){
+        cout<<arr2[j]<<" ";
+        j++;
+    }
+
     return 0;
 }
