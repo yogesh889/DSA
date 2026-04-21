@@ -1,0 +1,15 @@
+CHARACTER: 
+
+    character data type is used to store single character.
+    character must be sourrounded by single quote.
+    ASCI for a to z : 97 - 122 
+    ASCI for A to Z : 65 - 90
+    ASCII for '0' to '9' : 48 - 57
+    We have character array -> in this we found null character at the end of the string
+
+STRING: 
+
+    String in c++ are objects of string class
+    they used to represent and manipulate sequence of character
+    string handles memory management automatically and provides a wide range of built-in functions for ease of use
+    we do not have null character at the end of this string

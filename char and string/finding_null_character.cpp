@@ -5,25 +5,21 @@ using namespace std;
 
 int main(){
 
-    string str;
-    cout<<"Enter sentence: ";
-    getline(cin, str);
+    // string do not have null character at the end
+    // only character array have null character at the end
 
-    int n = str.size();
+    char ch[] = "hello";
+    int n = sizeof(ch);
+
+    cout<<n<<endl;
 
     for(int i=0; i<n; i++){
-        cout<<str[i]<<" ";
+        if(ch[i] == '\0'){
+            cout<<endl;
+            cout<<"null character found";
+        }
+        cout<<ch[i];
     }
-
-    cout<<endl;
-
-    char ch = 'A';
-    cout<<int(ch)<<endl;
-
-    int a = 65;
-    cout<<char(a)<<endl;
-    
-
 
     return 0;
 }

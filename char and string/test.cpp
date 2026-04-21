@@ -3,21 +3,19 @@ using namespace std;
 
 int main(){
 
-    char arr[] = "abcd";
+    char ch[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
 
-    for(int i=0; i<5; i++){
-        cout<<arr[i]<<" ";
+    int n = sizeof(ch);
+
+    cout<<n<<endl;
+
+    int cnt = 0;
+
+    for(int i=0; ch[i]!='\0' ; i++){
+        cnt++;
     }
 
-    cout<<endl;
-
-    char arr1[5] = {'a', 'b', 'c', 'd'};
-
-    for(int i=0; i<5; i++){
-        cout<<arr1[i]<<" ";
-    }
-
-
-
+    cout<<cnt<<endl;
+    
     return 0;
 }
