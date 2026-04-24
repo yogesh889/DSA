@@ -3,19 +3,27 @@ using namespace std;
 
 int main(){
 
-    char ch[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
+    // char str[] = "abc123!@#456";
 
-    int n = sizeof(ch);
+    // // string newString = "";
 
-    cout<<n<<endl;
+    // int j = 0;
 
-    int cnt = 0;
+    // for(int i=0; str[i]!='\0'; i++){
+    //     if(str[i]>=48 && str[i]<=57){
+    //         // newString += str[i];
+    //         str[j] = str[i];
+    //         j++;
+    //     }
+    // }
 
-    for(int i=0; ch[i]!='\0' ; i++){
-        cnt++;
-    }
+    // cout<<newString<<endl;
 
-    cout<<cnt<<endl;
-    
+    char ch = 65;
+
+    char ch = 'A';
+    cout<<ch<<endl;
+
+
     return 0;
 }
