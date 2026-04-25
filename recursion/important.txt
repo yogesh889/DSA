@@ -1,0 +1,7 @@
+1> check if code is working for 0
+2> check if code is working for 1
+3> if code is working for 0 and 1, I will not question how it is working for k.
+   I am not going to question how small output working
+4> According to PMI assume small problem has already been done
+5> According to PMI if code is working for k, we will have to run for for k+1
+6> we can also say that, we will assume for n-1 and will do it for n
