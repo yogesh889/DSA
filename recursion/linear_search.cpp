@@ -3,7 +3,7 @@ using namespace std;
 
 int linear_search(int* arr, int n, int key, int index){
     if(index == n){
-        return 0;
+        return -1;
     }
 
     if(arr[index] == key){
@@ -21,7 +21,7 @@ int main(){
     int arr[5] = {4, 3, 7, 2, 0};
     int n = sizeof(arr)/sizeof(int);
 
-    int key = 2;
+    int key = 3;
     
     int ans = linear_search(arr, n, key, 0);
 
