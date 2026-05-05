@@ -1,32 +1,50 @@
-#include<iostream>
-using namespace std;
+#include<stdio.h>
 
-int sum(){
-    int a, b;
-    a = 50; 
-    b = 60;
-
-    return a+b;
+void print_pattern1(int n){
+    for(int i=0; i<n; i++){
+        for(int j=0; j<i; j++){
+            printf("*");
+        }
+        printf("\n");
+    }
 }
 
-int sub(){
-    int a, b;
-    a = 20; 
-    b = 50;
-    int c = b-a;
-        
-    return c;
+int multiplication(int n){
+    int a = n*10;
+    return a;
+}
+
+int division(int n){
+    int a = 2;
+    return a;
+}
+
+int count_digits(int b){
+    int cnt = 0;
+    while(b != 0){
+        cnt++;
+        b = b/10;
+    }
+    return cnt;
 }
 
 int main(){
 
-    int result1 = sum();
+    int n;
+    scanf("%d", &n);
 
-    int result2 = sub();
+    print_pattern1(n);
 
-    cout<<result1<<" "<<result2<<endl;
+    int ans = multiplication(n);
+    printf("%d\n", ans);
 
+    ans = division(n);
+    printf("%d", ans);
 
+    int b;
+    scanf("%d", &b);
+    ans = count_digits(b);
+    printf("%d", ans);
 
     return 0;
 }

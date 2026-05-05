@@ -14,7 +14,8 @@ int lcm(int a, int b, int multiple){
 
 int main(){
 
-    int a = 4, b = 6;
+    int a, b;
+    cin>>a>>b;
 
     int start = max(a, b);
 
