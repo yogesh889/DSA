@@ -1,50 +1,32 @@
+// pass by address
 #include<stdio.h>
 
-void print_pattern1(int n){
-    for(int i=0; i<n; i++){
-        for(int j=0; j<i; j++){
-            printf("*");
-        }
-        printf("\n");
-    }
-}
+void swap(int* c, int* d){
 
-int multiplication(int n){
-    int a = n*10;
-    return a;
-}
+    printf("address of c and d inside swap function \n");
+    printf("%p\n", &c);
+    printf("%p\n", &d);
+    printf("\n");
 
-int division(int n){
-    int a = 2;
-    return a;
-}
+    // c = c+d;
+    // d = c-d;
+    // c = c-d;
 
-int count_digits(int b){
-    int cnt = 0;
-    while(b != 0){
-        cnt++;
-        b = b/10;
-    }
-    return cnt;
+    // printf("a: %d\n", a);
+    // printf("b: %d\n", b);
+
 }
 
 int main(){
 
-    int n;
-    scanf("%d", &n);
+    int a = 4; 
+    int b = 9;
 
-    print_pattern1(n);
+    swap(&a, &b);
 
-    int ans = multiplication(n);
-    printf("%d\n", ans);
-
-    ans = division(n);
-    printf("%d", ans);
-
-    int b;
-    scanf("%d", &b);
-    ans = count_digits(b);
-    printf("%d", ans);
+    printf("address of a and b inside main function \n");
+    printf("%p\n", &a);
+    printf("%p\n", &b);
 
     return 0;
 }
