@@ -4,11 +4,12 @@ using namespace std;
 int main(){
     
     int arr[5] = {4, 3, 1, 9, 0};
+    int n = 5;
 
-    for(int i=0; i<5-1; i++){
+    for(int i=0; i<n-1; i++){
         int min = i;
-        for(int j=i+1; j<5; j++){
-            if(arr[min] > arr[j]){
+        for(int j=i+1; j<n; j++){
+            if(arr[j] < arr[min]){
                 min = j;
             }
             // if(arr[i] > arr[min]){

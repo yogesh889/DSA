@@ -3,24 +3,48 @@ using namespace std;
 
 int main(){
 
-    int arr[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    int arr[3][3] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
 
-    int arr1[3][3];
+    int n = 3;
 
-    int m = sizeof(arr[0])/sizeof(int);
-    int n = sizeof(arr)/sizeof(arr[0]);
+    // Rotate layer by layer
+    for(int i = 0; i < n / 2; i++){
 
-    for(int i=0; i<m; i++){
-        for(int j=0; j<n; j++){
-            arr1[i][j] = arr[n-i-1][n-j-1];
+        // Traverse elements in current layer
+        for(int j = i; j < n - i - 1; j++){
+
+            // Store top element
+            int temp = arr[i][j];
+
+            // Left -> Top
+            arr[i][j] = arr[n-1-j][i];
+
+            // Bottom -> Left
+            arr[n-1-j][i] = arr[n-1-i][n-1-j];
+
+            // Right -> Bottom
+            arr[n-1-i][n-1-j] = arr[j][n-1-i];
+
+            // Top -> Right
+            arr[j][n-1-i] = temp;
         }
     }
 
-    for(int i=0; i<m; i++){
-        for(int j=0; j<n; j++){
-            cout<<arr1[i][j]<<" ";
+    // Print rotated matrix
+    cout << "90 Degree Clockwise Rotation:\n";
+
+    for(int i = 0; i < n; i++){
+
+        for(int j = 0; j < n; j++){
+
+            cout << arr[i][j] << " ";
         }
-        cout<<endl;
+
+        cout << endl;
     }
 
     return 0;
