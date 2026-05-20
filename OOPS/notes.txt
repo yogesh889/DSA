@@ -1,0 +1,3 @@
+Protected Access Specifier
+
+protected members are similar to private members, but they can also be accessed in derived classes (inheritance).
