@@ -2,14 +2,14 @@
 using namespace std;
 
 class Node{
-public:
-    int data;
-    Node* next;
+    public:
+        int data;
+        Node* next;
 
-    Node(int data){
-        this->data = data;
-        this->next = nullptr;
-    }
+        Node(int data){
+            this->data = data;
+            this->next = nullptr;
+        }
 };
 
 int main(){
@@ -35,7 +35,7 @@ int main(){
     Node* temp = head;
 
     while(temp != nullptr){
-        cout << temp->data << endl;
+        cout << temp->data << " ";
         temp = temp->next;
     }
 
