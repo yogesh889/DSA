@@ -7,4 +7,6 @@ int main() {
 
     cout<<v.empty()<<endl;
 
+    return 0;
+
 }
