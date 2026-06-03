@@ -2,46 +2,66 @@
 using namespace std;
 
 class Node{
-public:
-    int data;
-    Node* next;
+    public: 
+        int data;
+        Node* next;
+    
+        Node(int data){
+            this->data = data;
+            this->next = nullptr;
+        }
 
-    Node(int x){
-        data = x;
-        next = nullptr;
-    }
+
 };
+
+class Circularlist{
+    private:
+        Node* head;
+        Node* tail;
+    public: 
+        Circularlist(){
+            head = tail = nullptr;
+        }
+
+        void insert_At_Head(int val){
+            Node* newNode = new Node(val);
+
+            if(head == nullptr){
+                head = tail = newNode;
+                tail->next = head;
+            }else{
+                newNode->next = head;
+                head = newNode;
+                tail->next = head;
+            }
+
+        }
+
+        void print(){
+            if(head == nullptr){
+                return;
+            }
+            cout<<head->data<<" -> ";
+            Node* temp = head->next;
+            while(temp != head){
+                cout<<temp->data<<" -> ";
+                temp = temp->next;
+            }
+            cout<<head->data<<endl;
+        }
+
+};
+
 
 int main(){
 
-    int n;
-    cin >> n;
+    Circularlist cll;
 
-    if(n == 0) return 0;
+    cll.insert_At_Head(10);
+    cll.insert_At_Head(20);
+    cll.insert_At_Head(30);
 
-    int x;
-    cin >> x;
-
-    Node* head = new Node(x);
-    Node* tail = head;
-
-    for(int i = 1; i < n; i++){
-        cin >> x;
-
-        tail->next = new Node(x);
-        tail = tail->next;
-    }
-
-    // Make circular
-    tail->next = head;
-
-    Node* temp = head;
-
-    do{
-        cout << temp->data << " ";
-        temp = temp->next;
-    }
-    while(temp != head);
+    cll.print();
 
     return 0;
 }
