@@ -1,2 +1,7 @@
-    Node* head;
-        Node* tail;
+    int data;
+        Node* next;
+
+        Node(int val){
+            data = val;
+            next = nullptr;
+        }

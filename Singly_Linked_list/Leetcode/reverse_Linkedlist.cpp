@@ -48,6 +48,7 @@ ListNode* reverse_Linkedlist(ListNode* head){
     ListNode* prev = nullptr;
     ListNode* curr = head;
 
+    // prev      curr      nextNode
     while(curr != nullptr){
         ListNode* nextNode = curr->next;
 
