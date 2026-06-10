@@ -1,0 +1,33 @@
+BalanceFactor=Height(LeftSubtree)−Height(RightSubtree)
+
+8.5 AVL Rebalancing
+
+After every insertion:
+
+Step 1
+
+Insert normally like BST.
+
+Step 2
+
+Update heights.
+
+Step 3
+
+Calculate balance factor.
+
+Step 4
+
+Apply rotation if needed.
+
+
+| Case | Rotation       |
+| ---- | -------------- |
+| LL   | Right Rotation |
+| RR   | Left Rotation  |
+| LR   | Left + Right   |
+| RL   | Right + Left   |
+
+Height Update Formula
+
+Height=1+max(Height(Left),Height(Right))

@@ -18,9 +18,9 @@ public:
             cout << "Stack Overflow\n";
             return;
         }
-        cout<<top<<"\n";
         top++;
         arr[top] = value;
+        cout<<top<<"\n";
     }
 
     void pop() {
@@ -63,6 +63,10 @@ int main() {
     s.push(20);
     s.push(30);
 
+    s.display();
+    cout<<endl;
+
+    s.pop();
     s.display();
 
     cout << "Top Element: "
