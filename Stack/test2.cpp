@@ -1,18 +1,20 @@
-#include<iostream>
+#include <iostream>
+#include <vector>
+
 using namespace std;
 
-int main(){
-    int n;
+int main() {
 
-    int arr[n];
-    cin>>n;
+    vector<int> vec;
 
-    for(int i=0; i<n; i++){
-        cin>>arr[i];
-    }
+    vec.push_back(5);
+    vec.push_back(5);
+    vec.push_back(6);
+    vec.push_back(7);
+    vec.push_back(8);
 
-    for(int i=0; i<n; i++){
-        cout<<arr[i]<<" ";
+    for (auto x : vec) {
+        cout << x << " ";
     }
 
     return 0;
