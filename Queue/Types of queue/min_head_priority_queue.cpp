@@ -2,19 +2,17 @@
 #include <queue>
 using namespace std;
 
-int main() {
+int main()
+{
 
-    priority_queue<
-        int,
-        vector<int>,
-        greater<int>
-    > pq;
+    priority_queue<int, vector<int>, greater<int> >pq;
 
     pq.push(10);
     pq.push(50);
     pq.push(20);
 
-    while (!pq.empty()) {
+    while (!pq.empty())
+    {
 
         cout << pq.top() << " ";
         pq.pop();
