@@ -1,20 +1,50 @@
-#include <iostream>
-#include <queue>
+#include<bits/stdc++.h>
 using namespace std;
 
-int main()
-{
+int main(){
 
-    priority_queue<int, vector<int>, greater<int> >pq;
+    deque<int> dq;
 
-    pq.push(10);
-    pq.push(50);
-    pq.push(20);
+    dq.push_back(20);
+    dq.push_back(30);
+    dq.push_front(40);
 
-    while (!pq.empty())
-    {
+    cout<<"Dqueue: ";
 
-        cout << pq.top() << " ";
-        pq.pop();
+    for(auto x: dq){
+        cout<<x<<" ";
     }
+    cout<<endl;
+
+    dq.pop_front();
+
+    cout<<"After front Delete: ";
+    for(auto x: dq){
+        cout<<x<<" ";
+    }
+    cout<<endl;
+
+    dq.pop_back();
+    cout<<"After rear Delete: ";
+    for(auto x: dq){
+        cout<<x<<" ";
+    }
+    cout<<endl;
+
+    dq.push_front(50);
+    dq.push_front(70);
+    dq.push_front(80);
+    for(auto x: dq){
+        cout<<x<<" ";
+    }
+
+    cout<<endl;
+    dq.push_back(500);
+    dq.push_back(700);
+    dq.push_back(800);
+    for(auto x: dq){
+        cout<<x<<" ";
+    }
+
+    return 0;
 }

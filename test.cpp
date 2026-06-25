@@ -1,25 +1,16 @@
-#include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
-void display(stack<int> &st){
-    while(!st.empty()){
-        cout<<st.top()<<" ";
-        st.pop();
-    }
-}
-
 int main(){
-    stack<int> st;
 
-    st.push(10);
-    st.push(20);
-    st.push(30);
-    st.push(40);
-    st.pop();
-    st.pop();
-    display(st);
+    int x = 1;
 
-    
+    while(x<10){
+        x = (x << 2) | 1;
+        cout<<x<<" ";
+    }
+    // int y = 5 | 1;
+    // cout<<y<<" ";
 
     return 0;
 }
