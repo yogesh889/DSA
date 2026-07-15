@@ -16,18 +16,29 @@ public:
     }
 };
 
-int countLeaves(Node* root)
+void deleteLeaf(Node* parent, bool isLeft)
 {
-    if(root == NULL)
-        return 0;
-
-    if(root->left == NULL && root->right == NULL){
-        return 1;
+    if(isLeft)
+    {
+        delete parent->left;
+        parent->left = NULL;
     }
+    else
+    {
+        delete parent->right;
+        parent->right = NULL;
+    }
+}
 
-    int count = countLeaves(root->left) + countLeaves(root->right);
+void preorder(Node* root)
+{
+    if(root==NULL)
+        return;
 
-    return count;
+    cout<<root->data<<" ";
+
+    preorder(root->left);
+    preorder(root->right);
 }
 
 int main()
@@ -43,5 +54,7 @@ int main()
     root->right->left = new Node(6);
     root->right->right = new Node(7);
 
-    cout << countLeaves(root);
+    deleteLeaf(root->left->right,false);
+
+    preorder(root);
 }

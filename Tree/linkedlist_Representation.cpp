@@ -22,14 +22,24 @@ public:
         root = nullptr;
     }
 
-    void createTree() {
-        root = new Node(1);
+    Node* createTree() {
+        int value;
 
-        root->left = new Node(2);
-        root->right = new Node(3);
+        cout << "Enter node value (-1 for NULL): ";
+        cin >> value;
 
-        root->left->left = new Node(4);
-        root->left->right = new Node(5);
+        if (value == -1)
+            return nullptr;
+
+        Node* newNode = new Node(value);
+
+        cout << "Enter left child of " << value << endl;
+        newNode->left = createTree();
+
+        cout << "Enter right child of " << value << endl;
+        newNode->right = createTree();
+
+        return newNode;
     }
 
     void display(Node* node) {
@@ -43,20 +53,13 @@ public:
 };
 
 int main() {
-    BinaryTree tree;
+    BinaryTree* tree = new BinaryTree();
 
-    tree.createTree();
+    cout << "Create Binary Tree\n";
+    tree->root = tree->createTree();
 
-    cout << "Tree Nodes: ";
-    tree.display(tree.root);
+    cout << "\nPreorder Traversal: ";
+    tree->display(tree->root);
 
     return 0;
 }
-
-    //     1
-    //    / \
-    //   2   3
-    //  / \
-    // 4   5
-
-    // Tree Nodes: 1 2 4 5 3
