@@ -1,16 +1,22 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
+
+void printNumber(int a){
+    if(a<=0){
+        return;
+    }
+
+    
+    printNumber(a-1);
+    cout<<a<<" ";
+}
 
 int main(){
 
-    int x = 1;
+    int n;
+    cin>>n;
 
-    while(x<10){
-        x = (x << 2) | 1;
-        cout<<x<<" ";
-    }
-    // int y = 5 | 1;
-    // cout<<y<<" ";
+    printNumber(n);
 
     return 0;
 }

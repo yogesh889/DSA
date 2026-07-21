@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Simple SQL Query Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 30px;
+      }
+      h2 {
+        color: darkblue;
+      }
+      textarea {
+        width: 100%;
+        height: 80px;
+        font-size: 16px;
+      }
+      button {
+        margin-top: 10px;
+        padding: 8px 16px;
+        font-size: 16px;
+      }
+      table {
+        border-collapse: collapse;
+        margin-top: 20px;
+        width: 100%;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 6px 10px;
+      }
+      th {
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Simple SQL Query Demo</h2>
+    <p>
+      This page has one table called <b>student</b>. Type any SQL query below
+      and click Run.
+    </p>
+
+    <table id="preview"></table>
+
+    <h3>Write your SQL Query:</h3>
+    <textarea id="query">SELECT * FROM student;</textarea><br />
+    <button onclick="runQuery()">Run Query</button>
+
+    <h3>Result:</h3>
+    <div id="result"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js"></script>
+    <script>
+      var db;
+
+      // Create database and table when page loads
+      initSqlJs({
+        locateFile: (file) =>
+          "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/" + file,
+      }).then(function (SQL) {
+        db = new SQL.Database();
+
+        db.run(`
+      CREATE TABLE student (
+        roll_no INTEGER,
+        name TEXT,
+        class TEXT,
+        marks INTEGER
+      );
+
+      INSERT INTO student VALUES (1, 'Aman', '12A', 88);
+      INSERT INTO student VALUES (2, 'Priya', '12A', 92);
+      INSERT INTO student VALUES (3, 'Rahul', '12B', 76);
+      INSERT INTO student VALUES (4, 'Sneha', '12B', 65);
+      INSERT INTO student VALUES (5, 'Vikas', '12A', 54);
+    `);
+
+        // show the table once on page load
+        showTable("SELECT * FROM student;", "preview");
+      });
+
+      function runQuery() {
+        var query = document.getElementById("query").value;
+        showTable(query, "result");
+      }
+
+      function showTable(query, targetId) {
+        var target = document.getElementById(targetId);
+        target.innerHTML = "";
+
+        try {
+          var output = db.exec(query);
+
+          if (output.length === 0) {
+            target.innerHTML = "<p>No results found.</p>";
+            return;
+          }
+
+          var columns = output[0].columns;
+          var values = output[0].values;
+
+          var html = "<table><tr>";
+          for (var i = 0; i < columns.length; i++) {
+            html += "<th>" + columns[i] + "</th>";
+          }
+          html += "</tr>";
+
+          for (var r = 0; r < values.length; r++) {
+            html += "<tr>";
+            for (var c = 0; c < values[r].length; c++) {
+              html += "<td>" + values[r][c] + "</td>";
+            }
+            html += "</tr>";
+          }
+          html += "</table>";
+
+          target.innerHTML = html;
+        } catch (error) {
+          target.innerHTML =
+            "<p style='color:red;'>Error: " + error.message + "</p>";
+        }
+      }
+    </script>
+  </body>
+</html>
