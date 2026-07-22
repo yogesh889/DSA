@@ -1,4 +1,7 @@
-#include <stdio.h>
+#include<bits/stdc++.h>
+#include <chrono>
+using namespace std;
+using namespace std::chrono;
 
 void merge(int arr[], int left, int mid, int right) {
     int i = left, j = mid + 1, k = 0;
@@ -39,10 +42,20 @@ void mergeSort(int arr[], int left, int right) {
 }
 
 int main() {
-    int arr[] = {6, 3, 9, 5, 2, 8};
+    int arr[] = {6, 3, 9, 5, 2, 8, 3, 5, 12 , 3, 56, 65, 45, 7, 6, 8, 9, 3, 34, 43, 23, 53};
     int n = sizeof(arr) / sizeof(arr[0]);
 
+    auto start = high_resolution_clock::now();
+
     mergeSort(arr, 0, n - 1);
+
+    auto end = high_resolution_clock::now();
+
+    auto duration = duration_cast<microseconds>(end - start);
+
+    cout << "Execution Time: "<< duration.count()<< " nanoseconds";
+
+    cout<<endl;
 
     for (int i = 0; i < n; i++) {
         printf("%d ", arr[i]);

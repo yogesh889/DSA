@@ -1,48 +1,59 @@
 #include <iostream>
+#include <chrono>
+using namespace std::chrono;
 using namespace std;
 
 int partition(int arr[], int low, int high) {
-    int pivot = arr[high];
-    int i = low - 1;
+    int pivot = arr[low];
+    int i = low;
+    int j = high;
 
-    for(int j = low; j < high; j++) {
-        if(arr[j] <= pivot) {
+    while (i < j) {
+
+        while (arr[i] <= pivot && i < high)
             i++;
+
+        while (arr[j] > pivot && j > low)
+            j--;
+
+        if (i < j)
             swap(arr[i], arr[j]);
-        }
     }
 
-    swap(arr[i + 1], arr[high]);
-    return i + 1;
+    swap(arr[low], arr[j]);
+    return j;
 }
 
 void quickSort(int arr[], int low, int high) {
-    if(low < high) {
-        int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
+    if (low < high) {
+        int p = partition(arr, low, high);
+
+        quickSort(arr, low, p - 1);
+        quickSort(arr, p + 1, high);
     }
 }
 
 int main() {
-    int n;
+    int arr[] = {4, 6, 2, 5, 7, 9, 1, 3};
+    int n = sizeof(arr) / sizeof(arr[0]);
 
-    cout << "Enter the number of elements: ";
-    cin >> n;
-
-    int arr[n];
-
-    cout << "Enter the elements:\n";
-    for(int i = 0; i < n; i++) {
-        cin >> arr[i];
-    }
+    auto start = high_resolution_clock::now();
 
     quickSort(arr, 0, n - 1);
 
-    cout << "Sorted array:\n";
-    for(int i = 0; i < n; i++) {
+    auto end = high_resolution_clock::now();
+
+    cout << "Sorted Array: ";
+    for (int i = 0; i < n; i++)
         cout << arr[i] << " ";
-    }
+
+    cout<<endl;
+
+    auto duration = duration_cast<nanoseconds>(end - start);
+
+    cout << "Execution Time: "
+         << duration.count()
+         << " nanoseconds";
 
     return 0;
 }
