@@ -1,127 +1,173 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Simple SQL Query Demo</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Grid</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 30px;
-      }
-      h2 {
-        color: darkblue;
-      }
-      textarea {
-        width: 100%;
-        height: 80px;
-        font-size: 16px;
-      }
-      button {
-        margin-top: 10px;
-        padding: 8px 16px;
-        font-size: 16px;
-      }
-      table {
-        border-collapse: collapse;
-        margin-top: 20px;
-        width: 100%;
-      }
-      th,
-      td {
-        border: 1px solid black;
-        padding: 6px 10px;
-      }
-      th {
-        background-color: lightgray;
-      }
-    </style>
-  </head>
-  <body>
-    <h2>Simple SQL Query Demo</h2>
-    <p>
-      This page has one table called <b>student</b>. Type any SQL query below
-      and click Run.
-    </p>
-
-    <table id="preview"></table>
-
-    <h3>Write your SQL Query:</h3>
-    <textarea id="query">SELECT * FROM student;</textarea><br />
-    <button onclick="runQuery()">Run Query</button>
-
-    <h3>Result:</h3>
-    <div id="result"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js"></script>
-    <script>
-      var db;
-
-      // Create database and table when page loads
-      initSqlJs({
-        locateFile: (file) =>
-          "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/" + file,
-      }).then(function (SQL) {
-        db = new SQL.Database();
-
-        db.run(`
-      CREATE TABLE student (
-        roll_no INTEGER,
-        name TEXT,
-        class TEXT,
-        marks INTEGER
-      );
-
-      INSERT INTO student VALUES (1, 'Aman', '12A', 88);
-      INSERT INTO student VALUES (2, 'Priya', '12A', 92);
-      INSERT INTO student VALUES (3, 'Rahul', '12B', 76);
-      INSERT INTO student VALUES (4, 'Sneha', '12B', 65);
-      INSERT INTO student VALUES (5, 'Vikas', '12A', 54);
-    `);
-
-        // show the table once on page load
-        showTable("SELECT * FROM student;", "preview");
-      });
-
-      function runQuery() {
-        var query = document.getElementById("query").value;
-        showTable(query, "result");
-      }
-
-      function showTable(query, targetId) {
-        var target = document.getElementById(targetId);
-        target.innerHTML = "";
-
-        try {
-          var output = db.exec(query);
-
-          if (output.length === 0) {
-            target.innerHTML = "<p>No results found.</p>";
-            return;
-          }
-
-          var columns = output[0].columns;
-          var values = output[0].values;
-
-          var html = "<table><tr>";
-          for (var i = 0; i < columns.length; i++) {
-            html += "<th>" + columns[i] + "</th>";
-          }
-          html += "</tr>";
-
-          for (var r = 0; r < values.length; r++) {
-            html += "<tr>";
-            for (var c = 0; c < values[r].length; c++) {
-              html += "<td>" + values[r][c] + "</td>";
-            }
-            html += "</tr>";
-          }
-          html += "</table>";
-
-          target.innerHTML = html;
-        } catch (error) {
-          target.innerHTML =
-            "<p style='color:red;'>Error: " + error.message + "</p>";
+        /* 0 margin, 0 padding, 100% pure flow */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
-      }
-    </script>
-  </body>
+
+        body {
+            background-color: #fafafa;
+            color: #262626;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 470px width - the exact golden ratio for mobile-first feed viewing */
+        .feed-container {
+            width: 100%;
+            max-width: 470px;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .post-card {
+            background: #ffffff;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 14px;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            padding: 2px;
+        }
+        
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        .username {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* 1:1 Aspect ratio baby, 100% width, pure math */
+        .post-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: #efefef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #8e8e8e;
+        }
+
+        .post-actions {
+            display: flex;
+            padding: 12px 14px;
+            gap: 16px;
+        }
+
+        .action-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #262626;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .post-details {
+            padding: 0 14px 14px 14px;
+        }
+
+        .likes {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .caption {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .caption-user {
+            font-weight: 600;
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="feed-container">
+        <!-- Post 1 -->
+        <article class="post-card">
+            <header class="post-header">
+                <div class="avatar"><div class="avatar-inner"></div></div>
+                <div class="username">user_7734</div>
+            </header>
+            
+            <div class="post-image">
+                1080 x 1080 px
+            </div>
+            
+            <div class="post-actions">
+                <div class="action-icon"></div> <!-- Like -->
+                <div class="action-icon"></div> <!-- Comment -->
+                <div class="action-icon"></div> <!-- Share -->
+            </div>
+            
+            <div class="post-details">
+                <div class="likes">8,432 likes</div>
+                <div class="caption">
+                    <span class="caption-user">user_7734</span>
+                    Running pure calculations today. No distractions.
+                </div>
+            </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="post-card">
+            <header class="post-header">
+                <div class="avatar"><div class="avatar-inner"></div></div>
+                <div class="username">logic_99</div>
+            </header>
+            
+            <div class="post-image">
+                1080 x 1080 px
+            </div>
+            
+            <div class="post-actions">
+                <div class="action-icon"></div>
+                <div class="action-icon"></div>
+                <div class="action-icon"></div>
+            </div>
+            
+            <div class="post-details">
+                <div class="likes">12,041 likes</div>
+                <div class="caption">
+                    <span class="caption-user">logic_99</span>
+                    Grid alignment hitting exactly at the 14px margin. Beautiful.
+                </div>
+            </div>
+        </article>
+    </div>
+
+</body>
 </html>
