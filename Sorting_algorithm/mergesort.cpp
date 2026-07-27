@@ -45,15 +45,15 @@ int main() {
     int arr[] = {6, 3, 9, 5, 2, 8, 3, 5, 12 , 3, 56, 65, 45, 7, 6, 8, 9, 3, 34, 43, 23, 53};
     int n = sizeof(arr) / sizeof(arr[0]);
 
-    auto start = high_resolution_clock::now();
+    // auto start = high_resolution_clock::now();
 
     mergeSort(arr, 0, n - 1);
 
-    auto end = high_resolution_clock::now();
+    // auto end = high_resolution_clock::now();
 
-    auto duration = duration_cast<microseconds>(end - start);
+    // auto duration = duration_cast<microseconds>(end - start);
 
-    cout << "Execution Time: "<< duration.count()<< " nanoseconds";
+    // cout << "Execution Time: "<< duration.count()<< " nanoseconds";
 
     cout<<endl;
 

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class WeightedGraph
+class Un_WeightedGraph
 {
     int V, E;
 
@@ -69,7 +69,7 @@ public:
 
 int main()
 {
-    WeightedGraph wg;
+    Un_WeightedGraph wg;
 
     wg.un_weighted_directed_matrix();
 
