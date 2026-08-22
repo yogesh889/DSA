@@ -60,7 +60,7 @@ int main()
 
     cout << "BFS Traversal : ";
 
-    BFS(0, adj, V);
+    BFS(1, adj, V);
 
     return 0;
 }

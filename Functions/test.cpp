@@ -1,13 +1,15 @@
-#include<stdio.h>
+#include<bits/stdc++.h>
+using namespace std;
 
-void swap(int* c, int* d){
-    int temp = *c;
-    *c = *d;
-    *d = temp;
+// void square(int *p, int *q){
+//     *p = 54;
+//     *q = 90;
+//     cout<<*p<<" "<<*q<<endl;
+// }
 
-    printf("Inside swap function\n");
-    printf("c: %p \n", c);
-    printf("d: %p \n", d);
+int add(int a, int b){
+    int c = a+b;
+    return c;
 }
 
 int main(){
@@ -15,18 +17,12 @@ int main(){
     int a = 5;
     int b = 7;
 
-    printf("Inside main function\n");
-    printf("a: %p \n", &a);
-    printf("b: %p \n", &b);
+    // square(&a, &b);
 
-    printf("\n");
-    printf("\n");
-    printf("\n");
+    int d = add(a, b);
+    cout<<d<<endl;
 
-
-    swap(&a, &b);
-
-    printf("a: %d \n b: %d", a, b);
+    // cout<<a<<" "<<b<<endl;
 
     return 0;
 }

@@ -15,6 +15,9 @@ void dfs(int node, vector<int> adj[], vector<bool> &visited)
             dfs(neighbor, adj, visited);
         }
     }
+    // Void function automatically return when it reaches its closing
+    // or we can implicit mention return statement;
+    return ;
 }
 
 int main()
@@ -36,8 +39,10 @@ int main()
     adj[3].push_back(1);
 
     adj[4].push_back(1);
+    adj[4].push_back(2);
 
     adj[5].push_back(2);
+
 
     vector<bool> visited(V, false);
 

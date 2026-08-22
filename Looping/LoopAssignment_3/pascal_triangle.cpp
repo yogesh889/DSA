@@ -20,9 +20,9 @@ int main() {
     for (int i = 0; i < n; i++) {
 
         // loop → prints leading spaces for pyramid alignment
-        for (int s = 0; s < n - i - 1; s++) {
-            cout << " ";  // space for centering
-        }
+        // for (int s = 0; s < n - i - 1; s++) {
+        //     cout << " ";  // space for centering
+        // }
 
         int num = 1;  // first value in every row is always 1
 

@@ -13,11 +13,11 @@ int main()
         {0,0,0,0}
     };
 
-    for(int k = 0; k < V; k++)
+    for(int k = 0; k < V; k++) // intermediate point
     {
-        for(int i = 0; i < V; i++)
+        for(int i = 0; i <  V; i++) // starting point
         {
-            for(int j = 0; j < V; j++)
+            for(int j = 0; j < V; j++) // ending point
             {
                 // Already connected?
                 reach[i][j] =
@@ -52,3 +52,4 @@ int main()
 // | **Average Case**    | **O(V³)**       | **O(V²)**        | Every vertex is still considered as an intermediate for every pair of vertices.    |
 // | **Worst Case**      | **O(V³)**       | **O(V²)**        | Even if the graph is fully connected, all iterations are performed.                |
 // | **Auxiliary Space** | **—**           | **O(1)**         | Only loop variables (`i`, `j`, `k`) are used apart from the matrix.                |
+

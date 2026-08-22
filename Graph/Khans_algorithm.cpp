@@ -60,4 +60,10 @@ int main()
     }
 
     return 0;
-}  
+}
+
+// Time Complexity: O(V + E) because every vertex and every 
+// edge is processed at most once.
+// Space Complexity: O(V + E) because the adjacency 
+// list stores all vertices and edges, while indegree 
+// array and queue require O(V) additional space.

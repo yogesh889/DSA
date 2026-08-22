@@ -1,35 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-class UnweightedGraph
-{
+class UnweightedGraph{
     int V, E;
-
 public:
-
     // Unweighted Directed Graph using Adjacency List
     void Unweighted_directed_List()
     {
         cout << "Enter vertices and edges for Unweighted Directed Graph: ";
         cin >> V >> E;
-
         vector<vector<int>> AdjList(V);
-
         cout << "Enter (u v):\n";
-
-        for(int i = 0; i < E; i++)
-        {
+        for(int i = 0; i < E; i++){
             int u, v;
             cin >> u >> v;
-
             AdjList[u].push_back(v);
         }
-
         cout << "\nDirected Graph Adjacency List\n";
-
         for(int i = 0; i < V; i++)
         {
-            cout << i << " -> ";
+            cout << i << " : ";
 
             for(auto x : AdjList[i])
             {

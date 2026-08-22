@@ -10,16 +10,20 @@ void merge(vector<int>& arr, int low, int mid, int high) {
 
     while (left <= mid && right <= high) {
         if (arr[left] <= arr[right])
-            temp.push_back(arr[left++]);
+            temp.push_back(arr[left]);
+            left++;
         else
-            temp.push_back(arr[right++]);
+            temp.push_back(arr[right]);
+            right++
     }
 
     while (left <= mid)
-        temp.push_back(arr[left++]);
+        temp.push_back(arr[left]);
+        left++;
 
     while (right <= high)
-        temp.push_back(arr[right++]);
+        temp.push_back(arr[right]);
+        right++;
 
     for (int i = low; i <= high; i++)
         arr[i] = temp[i - low];
@@ -29,10 +33,12 @@ void parallelMergeSort(vector<int>& arr, int low, int high) {
     if (low >= high)
         return;
 
-    int mid = (low + high) / 2;
+    int mid = low + (high - low) / 2;
 
     thread leftThread(parallelMergeSort, ref(arr), low, mid);
+    // parallelMergeSort(arr, low, mid);
     thread rightThread(parallelMergeSort, ref(arr), mid + 1, high);
+    // parallelMergeSort(arr, mid+1, high);
 
     leftThread.join();
     rightThread.join();

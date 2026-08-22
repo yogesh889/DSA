@@ -24,6 +24,7 @@ int partition(int arr[], int low, int high)
 
 void QuickSort(int arr[], int low, int high)
 {
+    
     if(low < high)
     {
         int pi = partition(arr, low, high);
@@ -34,16 +35,15 @@ void QuickSort(int arr[], int low, int high)
 }
 
 int main()
-{
-    int arr[] = {2,1,7,9,0,5,3};
+{int arr[] = {2,1,7,9,0,5,3};
 
     int n = sizeof(arr)/sizeof(arr[0]);
 
-    auto start = high_resolution_clock::now();
+    // auto start = high_resolution_clock::now();
     QuickSort(arr, 0, n - 1);
-    auto end = high_resolution_clock::now();
+    // auto end = high_resolution_clock::now();
 
-    auto duration = duration_cast<microseconds>(end - start);
+    // auto duration = duration_cast<microseconds>(end - start);
 
     cout << "Sorted array:\n";
 
@@ -51,5 +51,5 @@ int main()
         cout << arr[i] << " ";
 
 
-    cout << "Execution Time: "<< duration.count()<< " microseconds";
+    // cout << "Execution Time: "<< duration.count()<< " microseconds";
 }
