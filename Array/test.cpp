@@ -1,28 +1,34 @@
-#include<stdio.h>
+#include<bits/stdc++.h>
+using namespace std;
+
+// void print(int* arr, int n){
+//     for(int i=0; i<n; i++){
+//         cout<<arr[i]<<" ";
+//     }
+// }
 
 int main(){
 
-    int sum = 0;
+    vector<int> arr = {0, 2, 4, 5, 9, 11};
+    int target = 13;
 
-    int arr[5];
+    int n = arr.size();
 
-    for(int i=0; i<5; i++){
-        scanf("%d", &arr[i]);
-    }
+    int i = 0; 
+    int j = n-1;
 
-    int cnt = 0;
-
-    for(int i=0; i<5; i++){
-        if(arr[i] == 4){
-            cnt++;
+    while(i<j){
+        int sum = arr[i] + arr[j];
+        if(target == sum){
+            cout<<"Target found: "<<i<<" "<<j;
+            break;
+        }
+        if(target > sum){
+            i++;
+        }else{
+            j--;
         }
     }
-
-    printf("%d", cnt);
-    
-    // for(int i=0; i<5; i++){
-    //     printf("%d ", arr[i]);
-    // }
 
     return 0;
 }

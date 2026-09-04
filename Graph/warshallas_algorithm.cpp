@@ -26,7 +26,7 @@ int main()
                     // Can k reach j?
                     // Can I go i → k AND k → j ?
                     (reach[i][k] && reach[k][j]);
-                    
+
 
                 // Keep the old answer OR find a new path through k.
             }
