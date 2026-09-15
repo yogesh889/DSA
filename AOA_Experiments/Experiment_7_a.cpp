@@ -69,3 +69,6 @@ int main()
 
     return 0;
 }
+
+// Time  = O(V + E)
+// Space = O(V)  ← including graph storage

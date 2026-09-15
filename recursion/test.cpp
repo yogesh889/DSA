@@ -1,55 +1,65 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-// void swap(int* p, int* q){
-//     int temp = *p;
-//     *p = *q; 
-//     *q = temp;
-// }
-
-//recursion fuction bubble sort
-void bubble_sort(int* arr, int n, int i){
-
-    if(i == 5){
-        return;
-    }
-
-    for(int j=0; j<n-i-1; j++){
-        if(arr[j] > arr[j+1]){
-            int temp = arr[j];
-            arr[j] = arr[j+1];
-            arr[j+1] = temp;
+void DFS(vector<bool> &visited, vector<vector<int>> &graph, int stNode){
+    visited[stNode] = true;
+    cout<<stNode<<" ";
+    for(int &neighbor: graph[stNode]){
+        if(!visited[neighbor]){
+            DFS(visited, graph, neighbor);
         }
     }
-
-    bubble_sort(arr, n, i+1);
-
 }
 
 int main(){
 
-    // Bubble sort
-    int arr[5] = {5, 1, 0, 2, 6};
+    int V, E;
+    cout<<"Enter number of Vertex: ";
+    cin>>V;
 
-    int size = sizeof(arr)/sizeof(int);
+    vector<vector<int>> graph(V);
 
+    cout<<"Enter number of Edges: ";
+    cin>>E;
 
-    // Using recursion
+    for(int i=0; i<E; i++){
+        int u, v;
+        cin>>u>>v;
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
 
-    bubble_sort(arr, size, 0);
-
-
-    // for(int i=0; i<size-1; i++){
-    //     for(int j=0; j<size-i-1; j++){
-    //         if(arr[j] > arr[j+1]){
-    //             swap(arr[j], arr[j+1]);
-    //         }
+    // for(int i=0; i<E; i++){
+    //     cout<<i<<": ";
+    //     for(int neighbor: graph[i]){
+    //         cout<<neighbor<<" ";
     //     }
+    //     cout<<endl;
     // }
 
-    for(int i=0; i<size; i++){
-        cout<<arr[i]<<" ";
+    vector<bool> visited(V, false);
+
+    int stNode;
+    cout<<"Enter starting node: ";
+    cin>>stNode;
+
+    DFS(visited, graph, stNode);
+
+    bool connected = true;
+
+    for(int i=0; i<V; i++){
+        if(visited[i] == false){
+            connected = false;
+            break;
+        }
     }
+
+    if(connected){
+        cout<<"graph is connected";
+    }else{
+        cout<<"graph is not connected";
+    }
+
 
     return 0;
 }
