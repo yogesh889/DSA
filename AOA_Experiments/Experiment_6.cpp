@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Edge
-{
-    int u, v, weight;
+class Edge{
+    public:
+        int u, v, weight;
 };
 
 int parent[100];
@@ -42,8 +42,9 @@ int main()
     };
 
     // Initialize DSU
-    for (int i = 0; i < V; i++)
+    for (int i = 0; i < V; i++){
         parent[i] = i;
+    }
 
     // Sort edges by weight
     sort(edges.begin(), edges.end(), comparater);

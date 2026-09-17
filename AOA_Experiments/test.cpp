@@ -1,67 +1,67 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void DFS(int stNode, vector<vector<int>> &graph, vector<bool> &visited){
-    visited[stNode] = true;
-    cout<<stNode<<" ";
-    for(int neighbor: graph[stNode]){
-        if(!visited[neighbor]){
-            DFS(neighbor, graph, visited);
-        }
-    }
+int Parent[100];
+
+class Edge{
+    public: 
+        int u, v, weight;
+};
+
+int comparater(Edge a, Edge b){
+    return a.weight < b.weight;
+}
+
+int findParent(int x)
+{
+    if (Parent[x] == x)
+        return x;
+
+    return Parent[x] = findParent(Parent[x]);
+}
+
+void unite(int u, int v){
+    u = findParent(u);
+    v = findParent(v);
+    Parent[u] = v;
 }
 
 int main(){
+    int V = 4;
 
-    int V, E;
-    cout<<"Enter number of Vetex: ";
-    cin>>V;
-
-    vector<vector<int>> graph(V);
-
-    cout<<"Enter number of Edges: ";
-    cin>>E;
-
-    cout<<"Connected vertex \n"
-    for(int i=0; i<E; i++){
-        int u, v;
-        cin>>u>>v;
-        graph[u].push_back(v);
-        graph[v].push_back(u);
-    }
-
-    cout<<"print all the nodes using adjacency list";
-    for(int i=0; i<V; i++){
-        cout<<i<<": ";
-        for(int neighbor: graph[i]){
-            cout<<neighbor<<" ";
-        }
-        cout<<endl;
-    }
-
-    vector<bool> visited(V, false);
-    
-    int stNode;
-    cout<<"Enter starting Node: ";
-    cin>>stNode;
-
-    DFS(stNode, graph, visited);
-
-    bool connected = true;
+    vector<Edge> edges = {
+        {0, 1, 10},
+        {0, 2, 6},
+        {0, 3, 5},
+        {1, 3, 4},
+        {2, 3, 3}
+    };
 
     for(int i=0; i<V; i++){
-        if(visited[i] == false){
-            connected = false;
-            break;
+        Parent[i] = i;
+    }
+
+    sort(edges.begin(), edges.end(), comparater);
+
+    int cost = 0;
+    int count = 0;  
+
+    for(Edge e: edges){
+        if(findParent(e.u) != findParent(e.v)){
+            cout<<e.u<<" - "<<e.v<<" : "<<e.weight<<endl;
+            cost += e.weight;
+            unite(e.u, e.v);
+            count++;
+            if(count == V-1){
+                break;
+            }
         }
     }
 
-    cout<<"GRaph is connected or not: "<<endl;
-    if(connected){
-        cout<<"graph is connected";
-    }else{
-        cout<<"graph is not connected";
-    }
+    cout<<"Minimum Cost of Spanning Tree: "<<cost<<endl;
 
     return 0;
 }
+
+// Time complexity: O(E log E) where E is the number of edges in the graph.
+// Sapce complexity: O(V) where V is the number of vertices in the graph.
