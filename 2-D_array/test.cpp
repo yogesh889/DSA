@@ -1,32 +1,54 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
 int main(){
+    int n = 3;
+    int m = 3;
 
-    int arr[3][3] = {
-        {1, 2, 3},
-        {4, 5, 6}, 
-        {7, 8, 9}
+    // int arr[m][n] = {
+    //     {3, 2, 1}, 
+    //     {11, 9, 7}, 
+    //     {0, 99, 5}
+    // };
+
+    vector<vector<int>> arr = {
+        {3, 2, 1}, 
+        {11, 9, 7}, 
+        {0, 99, 5}
     };
 
-    int temp[3][3];
+    // for(int i=0; i<m; i++){
+    //     for(int j=0; j<n; j++){
+    //         arr[i][j] += 2;
+    //     }
+    //     cout<<endl;
+    // }
 
-    int m = sizeof(arr[0])/sizeof(int);
-    int n = sizeof(arr)/sizeof(arr[0]);
+    // cout<<endl;
 
-    for(int i=0; i<m; i++){
-        for(int j=0; j<n; j++){
-            temp[i][j] = arr[n-j-1][i];
-        }
-        cout<<endl;
+    for(auto &row: arr){
+        sort(row.begin(), row.end());
     }
 
     for(int i=0; i<m; i++){
         for(int j=0; j<n; j++){
-            cout<<temp[i][j];
+            cout<<arr[i][j]<<" ";
         }
         cout<<endl;
     }
+
+    // for(int i=0; i<m; i++){
+    //     for(int j=0; j<n; j++){
+    //         cin>>arr[i][j];
+    //     }
+    // }
+
+    // vector<vector<int>> vec(3, vector<int>(0));
+    // for(int i=0; i<3; i++){
+    //     for(auto x: vec){
+    //         cout<<x<<" ";
+    //     }
+    // }
 
     return 0;
 }

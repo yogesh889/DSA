@@ -1,3 +1,3 @@
-for(int i=0; i<V; i++){
-        cout<<i<<" -> "<<ans[i]<<endl;
-    }
+ges.begin(), edges.end(), [](Edge a, Edge b){
+        a.weight < b.weight;
+    })

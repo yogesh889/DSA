@@ -1,23 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
-
 int Parent[100];
 
 class Edge{
     public: 
-        int u, v, weight;
+        int u, v, w;
 };
 
-int comparater(Edge a, Edge b){
-    return a.weight < b.weight;
-}
+// int comparator(Edge a, Edge b){
+//     return a.w < b.w;
+// }
 
-int findParent(int x)
-{
-    if (Parent[x] == x)
+int findParent(int x){
+    if(Parent[x] == x){
         return x;
-
-    return Parent[x] = findParent(Parent[x]);
+    }
+    return findParent(Parent[x]);
 }
 
 void unite(int u, int v){
@@ -27,6 +25,7 @@ void unite(int u, int v){
 }
 
 int main(){
+
     int V = 4;
 
     vector<Edge> edges = {
@@ -37,19 +36,24 @@ int main(){
         {2, 3, 3}
     };
 
+    // sort(edges.begin(), edges.end(), comparator)
+
+    //Sort edge list based on weight
+    sort(edges.begin(), edges.end(), [](Edge a, Edge b){
+        return a.w < b.w;
+    });
+
     for(int i=0; i<V; i++){
         Parent[i] = i;
     }
 
-    sort(edges.begin(), edges.end(), comparater);
-
+    int count = 0;
     int cost = 0;
-    int count = 0;  
 
     for(Edge e: edges){
         if(findParent(e.u) != findParent(e.v)){
-            cout<<e.u<<" - "<<e.v<<" : "<<e.weight<<endl;
-            cost += e.weight;
+            cout<<e.u<<"-> "<<e.v<<": "<<e.w<<endl;
+            cost += e.w;
             unite(e.u, e.v);
             count++;
             if(count == V-1){
@@ -58,10 +62,7 @@ int main(){
         }
     }
 
-    cout<<"Minimum Cost of Spanning Tree: "<<cost<<endl;
+    cout<<"MST: "<<cost;
 
     return 0;
 }
-
-// Time complexity: O(E log E) where E is the number of edges in the graph.
-// Sapce complexity: O(V) where V is the number of vertices in the graph.

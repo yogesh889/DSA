@@ -17,7 +17,9 @@ int main() {
         }
     }
 
-    cout << secondLargest;
+    cout << secondLargest<<endl;
 
+    string s = "hello";
+    cout<<s.size();
     return 0;
 }

@@ -46,8 +46,12 @@ int main()
         parent[i] = i;
     }
 
+    sort(edges.begin(), edges.end(), [](Edge a, Edge b){
+        return a.weight < b.weight;
+    });
+
     // Sort edges by weight
-    sort(edges.begin(), edges.end(), comparater);
+    // sort(edges.begin(), edges.end(), comparater);
 
     int cost = 0;
     int count = 0;

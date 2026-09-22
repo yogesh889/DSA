@@ -1,28 +1,30 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-void print_number(int n){
-
-    if(n == 0){
-        cout<<endl;
+void solve(int arr[], int index, int n)
+{
+    // Base case
+    if(index == n)
         return;
-    }
 
-    cout << n << " ";
+    // Going DOWN the recursion stack
+    arr[index] = 1;
 
-    print_number(n - 1);
+    cout<<arr[index]<<" ";
 
-    cout << n << " ";
+    solve(arr, index + 1, n);
 
+    // Backtracking / coming UP
+    arr[index] = 2;
+    
+    cout<<arr[index]<<" ";
 }
 
-int main(){
+int main()
+{
+    int arr[5] = {0, 0, 0, 0, 0};
 
-    int n;
-
-    cin >> n;
-
-    print_number(n);
+    solve(arr, 0, 5);
 
     return 0;
 }

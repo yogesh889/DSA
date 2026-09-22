@@ -6,7 +6,7 @@ void printSubset(int subset[], int size)
 {
     cout << "{ ";
 
-    for(int i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
         cout << subset[i] << " ";
     }
@@ -22,7 +22,7 @@ void printSubsets(int arr[],
                   int index)
 {
     // Base Case
-    if(index == n)
+    if (index == n)
     {
         printSubset(subset, subsetSize);
         return;
@@ -60,11 +60,10 @@ int main()
     // Temporary array to store subset
     int subset[100];
 
-    printSubsets(arr, n, subset, 0, 0); // actual array, array size, subset array, subset size, index 
+    printSubsets(arr, n, subset, 0, 0); // actual array, array size, subset array, subset size, index
 
     return 0;
 }
-
 
 // #include <iostream>
 // #include <vector>

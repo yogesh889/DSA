@@ -2,6 +2,7 @@
 using namespace std;
 
 #define N 4
+int n = 4;
 
 // Function to print board
 void printBoard(int board[N][N])
@@ -72,7 +73,7 @@ bool solveNQueen(int board[N][N], int row)
             board[row][col] = 0;
         }
     }
-
+    cout<<n<<endl;
     return false;
 }
 
@@ -88,6 +89,8 @@ int main()
     {
         cout << "No Solution Exists";
     }
+
+    cout<<n;
 
     return 0;
 }
