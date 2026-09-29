@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int spanningTree(int V, vector<vector<int>> adj[])
+int spanningTree(int V, vector<vector<int>> adj[], int stNode)
 {
 
     // Min heap: {weight, vertex}
@@ -84,6 +84,12 @@ int main()
 
     // 0 --2-- 1
 
+    for(int i=0; i<E; i++){
+        int u, v;
+        cin>>u>>v;
+        graph[u].push_back({v, w});
+    }
+
     adj[0].push_back({1, 2});
 
     adj[1].push_back({0, 2});
@@ -102,21 +108,21 @@ int main()
 
     // 1 --8-- 3
 
-    adj[1].push_back({3, 8});
+    adj[1].push_back({4, 8});
 
-    adj[3].push_back({1, 8});
+    adj[4].push_back({1, 8});
 
     // 1 --5-- 4
 
-    adj[1].push_back({4, 5});
+    adj[1].push_back({5, 5});
 
-    adj[4].push_back({1, 5});
+    adj[5].push_back({1, 5});
 
     // 2 --7-- 4
 
-    adj[2].push_back({4, 7});
+    adj[2].push_back({5, 7});
 
-    adj[4].push_back({2, 7});
+    adj[5].push_back({2, 7});
 
     cout << "Minimum Cost = "
 

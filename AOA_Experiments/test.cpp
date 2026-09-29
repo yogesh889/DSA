@@ -1,68 +1,51 @@
 #include<bits/stdc++.h>
 using namespace std;
-int Parent[100];
-
-class Edge{
-    public: 
-        int u, v, w;
-};
-
-// int comparator(Edge a, Edge b){
-//     return a.w < b.w;
-// }
-
-int findParent(int x){
-    if(Parent[x] == x){
-        return x;
-    }
-    return findParent(Parent[x]);
-}
-
-void unite(int u, int v){
-    u = findParent(u);
-    v = findParent(v);
-    Parent[u] = v;
-}
+#define INF 99999
 
 int main(){
 
-    int V = 4;
+    int V = 4; 
 
-    vector<Edge> edges = {
-        {0, 1, 10},
-        {0, 2, 6},
-        {0, 3, 5},
-        {1, 3, 4},
-        {2, 3, 3}
+    vector<vector<int>> edges = {
+        {0, 1, 5},    // 0 -> 1 = 5
+        {0, 3, 10},   // 0 -> 3 = 10
+        {1, 2, 3},    // 1 -> 2 = 3
+        {2, 3, 1}     // 2 -> 3 = 1
     };
 
-    // sort(edges.begin(), edges.end(), comparator)
-
-    //Sort edge list based on weight
-    sort(edges.begin(), edges.end(), [](Edge a, Edge b){
-        return a.w < b.w;
-    });
+    vector<vector<int>> dist(V, vector<int>(V, INF));
 
     for(int i=0; i<V; i++){
-        Parent[i] = i;
+        dist[i][i] = i;
     }
 
-    int count = 0;
-    int cost = 0;
+    for(auto edge: edges){
+        int u = edge[0];
+        int v = edge[1];
+        int wt = edge[2];
+        dist[u][v] = wt;
+    }
 
-    for(Edge e: edges){
-        if(findParent(e.u) != findParent(e.v)){
-            cout<<e.u<<"-> "<<e.v<<": "<<e.w<<endl;
-            cost += e.w;
-            unite(e.u, e.v);
-            count++;
-            if(count == V-1){
-                break;
+    for(int k=0; k<V; k++){
+        for(int i=0; i<V; i++){
+            for(int j=0; j<V; j++){
+                if(dist[i][k] == INF && dist[k][j] == INF){
+                    dist[i][j] = min(dist[i][j], dist[i][k]+dist[k][j]);
+                }
             }
         }
     }
 
-    cout<<"MST: "<<cost;
+    for(int i=0; i<V; i++){
+        for(int j=0; j<V; j++){
+            if(dist[i][j] == INF){
+                cout<<"INF ";
+            }else{
+                cout<<dist[i][j]<<" ";
+            }
+        }
+        cout<<endl;
+    }
 
     return 0;
 }
