@@ -1,70 +1,58 @@
 #include<bits/stdc++.h>
 using namespace std;
-
-void DFS(vector<bool> &visited, vector<vector<int>> graph, int stNode){
-    visited[stNode] = true;
-    cout<<stNode<<" ";
-    for(int neighbour: graph[stNode]){
-        if(!visited[neighbour]){
-            DFS(visited, graph, neighbour);
-        }
-    }
-}
+#define INF 99999
 
 int main(){
 
-    int V, E;
+	int V;
+	cout<<"Enter the number of vertices: ";
+	cin>>V;
 
-    cout<<"Enter number of vertices: ";
-    cin>>V;
+	int E;
+	cout<<"Enter the number of edges: ";
+	cin>>E;
 
-    cout<<"Enter number of edges: ";
-    cin>>E;
+	vector<vector<int>> edges;
 
-    vector<vector<int>> graph(V);
+	for(int i=0; i<E; i++){
+		int u, v, w;
+		cin>>u>>v>>w;
+		edges.push_back({u, v, w});
+	}
 
-    for(int i=0; i<E; i++){
-        int u, v;
-        cin>>u>>v;
-        //Undirected graph
-        graph[u].push_back(v);
-        graph[v].push_back(u);
-    }
+	vector<vector<int>> dist(V,vector<int>(V, INF));
 
-    cout<<"print graph"<<endl;
+	for(int i=0; i<V; i++){
+		dist[i][i] = 0;
 
-    for(int i=0; i<V; i++){
-        cout<<i<<": ";
-        for(int &neighbour: graph[i]){
-            cout<<neighbour<<" ";
-        }
-        cout<<endl;
-    }
+	}
 
-    vector<bool> visited(V, false);
+	for(auto &edge: edges){
+		int u = edge[0];
+		int v = edge[1];
+		int w = edge[2];
+		dist[u][v] = w;
+	}
 
-    int stNode;
-    cout<<"Enter starting node: ";
-    cin>>stNode;
+	for(int k=0; k<V; k++){ //Intermediate point
+		for(int i=0; i<V; i++){ //starting point
+			for(int j=0; j<V; j++){ //eding point
+				if(dist[i][k] != INF || dist[k][j] != INF){
+					dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+				}
+			}
+		}
+	}
 
-    DFS(visited, graph, stNode);
+	for(int i=0; i<V; i++){
+		for(int j=0; j<V; j++){
+			if(dist[i][j] == INF){
+				cout<<"INF ";
+			}else{
+				cout<<dist[i][j]<<" ";
+			}
+		}
+	}
 
-    bool connected = true;
-
-    for(int i=0; i<V; i++){
-        if(visited[i] == false){
-            connected = false;
-            break;
-        }
-    }
-
-    cout<<endl;
-
-    if(connected){
-        cout<<"graph is connected";
-    }else{
-        cout<<"graph is not connected";
-    }
-
-    return 0;
+	return 0;
 }

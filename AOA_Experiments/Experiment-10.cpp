@@ -2,7 +2,7 @@
 using namespace std;
 
 #define N 4
-int n = 4;
+// int n = 4;
 
 // Function to print board
 void printBoard(int board[N][N])

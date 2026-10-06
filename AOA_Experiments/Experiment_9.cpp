@@ -10,19 +10,25 @@ using namespace std;
 
 int main()
 {
-    int V = 4;
+    int V, E;
+    cout<<"Enter the number of vertices and edges: ";
+    cin >> V >> E;
 
     // u = source
     // v = destination
     // w = weight
 
-    vector<vector<int>> edges =
+    vector<vector<int>> edges;
+
+    // Input edges
+    for (int i = 0; i < E; i++)
     {
-        {0, 1, 5},    // 0 -> 1 = 5
-        {0, 3, 10},   // 0 -> 3 = 10
-        {1, 2, 3},    // 1 -> 2 = 3
-        {2, 3, 1}     // 2 -> 3 = 1
-    };
+        int u, v, w;
+
+        cin >> u >> v >> w;
+
+        edges.push_back({u, v, w});
+    }
 
     // -----------------------------------
     // STEP 1: Create distance matrix

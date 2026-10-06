@@ -42,7 +42,6 @@ int spanningTree(int V, vector<vector<int>> adj[], int stNode)
         // If already included, skip it
 
         if (visited[u])
-
             continue;
 
         // Include vertex in MST
@@ -78,51 +77,21 @@ int spanningTree(int V, vector<vector<int>> adj[], int stNode)
 int main()
 {
 
-    int V = 5;
-
+    int V;
+    int E;
     vector<vector<int>> adj[V];
+    cout<<"Enter number of vertices: ";
+    cin>>V;
 
-    // 0 --2-- 1
+    cout<<"Enter number of edges: ";
+    cout<<E;
 
     for(int i=0; i<E; i++){
-        int u, v;
-        cin>>u>>v;
-        graph[u].push_back({v, w});
+        int u, v, w;
+        cin>>u>>v>>w;
+        adj[u].push_back({v, w});
+        adj[v].push_back({u, w});
     }
-
-    adj[0].push_back({1, 2});
-
-    adj[1].push_back({0, 2});
-
-    // 0 --6-- 3
-
-    adj[0].push_back({3, 6});
-
-    adj[3].push_back({0, 6});
-
-    // 1 --3-- 2
-
-    adj[1].push_back({2, 3});
-
-    adj[2].push_back({1, 3});
-
-    // 1 --8-- 3
-
-    adj[1].push_back({4, 8});
-
-    adj[4].push_back({1, 8});
-
-    // 1 --5-- 4
-
-    adj[1].push_back({5, 5});
-
-    adj[5].push_back({1, 5});
-
-    // 2 --7-- 4
-
-    adj[2].push_back({5, 7});
-
-    adj[5].push_back({2, 7});
 
     cout << "Minimum Cost = "
 
