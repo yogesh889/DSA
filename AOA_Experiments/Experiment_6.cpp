@@ -25,17 +25,14 @@ void unite(int u, int v)
     u = findParent(u);
     v = findParent(v);
 
-    parent[v] = u;
+    parent[u] = v;
 }
 
 int main()
 {
     int V, E;
 
-    cout<<"Enter number of vertices: ";
-    cin>>V;
-    cout<<"Enter number of edges: ";
-    cin>>E;
+    cin>>V>>E;
 
     vector<Edge> edges;
     for(int i = 0; i<E; i++){

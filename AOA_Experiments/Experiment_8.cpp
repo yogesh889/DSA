@@ -94,7 +94,6 @@ int main()
     }
 
     cout << "Minimum Cost = "
-
          << spanningTree(V, adj) << endl;
 
     return 0;

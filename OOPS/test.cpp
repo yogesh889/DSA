@@ -1,27 +1,46 @@
-//Function overriding is a feature in object-oriented programming that allows a derived class to provide a specific implementation of a function that is already defined in its base class. In C++, function overriding is achieved by defining a function in the derived class with the same name, return type, and parameters as the function in the base class.
 #include<bits/stdc++.h>
 using namespace std;
 
 class Animal{
+    int l, b, h;
     public: 
-        virtual void speak(){
-            cout<<"Base class";
+        void areaOfRectacgle(l, b){
+            cout<<l*b;
+        }
+        virtual void sound(){
+            int a = 15;
+            cout<<a*5<<endl;
+            cout<<"Animal makes sound \n";
         }
 };
 
 class Dog: public Animal{
-    public:
-        void speak(){
-            cout<<"Derived class";
+    public: 
+        void sound(){
+            cout<<"Dog barks \n";
+        }
+        void areaOfReactangle(2, 3);
+};
+
+class Cat: public Animal{
+    public: 
+        void sound(){
+            cout<<"Cat meow \n";
         }
 };
 
 int main(){
 
-    Animal *a = new Dog();
-    a->speak();
+    Animal* a; //base class pointer
 
-    delete a;
+    Dog d;
+    Cat c;
+
+    a = &d;
+    a->sound();
+
+    a = &c;
+    a->sound();
 
     return 0;
 }

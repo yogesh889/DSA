@@ -25,7 +25,7 @@ bool isSafe(int board[N][N], int row, int col)
 {
     int i, j;
 
-    // Check column
+    // Check every prev cell of the column
     for(i = 0; i < row; i++)
     {
         if(board[i][col] == 1)
