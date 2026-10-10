@@ -1,35 +1,65 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//Abstract class is a class that cannot be instantiated and is designed to be inherited by other classes. It serves as a blueprint for derived classes, providing a common interface and defining certain behaviors that must be implemented by the derived classes. In C++, an abstract class is created by declaring at least one pure virtual function, which is a virtual function that has no implementation in the base class and must be overridden in the derived class.
-class Shape{
+class A{
     public: 
-    virtual void draw() = 0; // pure virtual function
-};
-
-class Circle: public Shape{
-    public:
-        void draw(){
-            cout<<"Drawing Circle\n";
+        int a, b;
+        void print(){
+            cout<<"Inside class A"<<endl;
+            cout<<"Class A"<<endl;
         }
 };
 
-class square: public Shape{
-    public:
-        void draw(){
-            cout<<"Drawing Square\n";
+class B: public A{
+    public: 
+        // a = 20;
+        // b = 30;
+        void funB(){
+            a = 20;
+            b = 30;
+            print();
+            cout<<"Inside class B"<<endl;
+            cout<<"a: "<<a<<endl;
+            cout<<"b: "<<b<<endl;
+        }
+};
+
+class C: public B{
+    public: 
+        void funC(){
+            a = 40;
+            b = 50;
+            cout<<"Inside class C"<<endl;
+            cout<<"a: "<<a<<endl;
+            cout<<"b: "<<b<<endl;
+            funB();
+        }
+};
+
+class D: public C{
+    public: 
+        void funD(){
+            funC();
+            funB();
+            print();
+            a = 60;
+            b = 70;
+            cout<<"Inside class D"<<endl;
+            cout<<"a: "<<a<<endl;
+            cout<<"b: "<<b<<endl;
         }
 };
 
 int main(){
 
-    Shape *s1 = new Circle();
-    Shape *s2 = new square();
-    s1->draw(); 
-    s2->draw();
+    // B Bobj;
+    // Bobj.funB();
+    // Bobj.print();
+    D Dobj;
+    Dobj.funD();
 
-    delete s1;
-    delete s2;
+    // C Cobj;
+    // Cobj.funC();
 
     return 0;
 }

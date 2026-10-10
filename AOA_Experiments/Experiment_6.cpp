@@ -1,14 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Edge{
-    public:
-        int u, v, weight;
+class Edge
+{
+public:
+    int u, v, weight;
 };
 
 int parent[100];
+int rankArr[100];
 
-int comparater(Edge a, Edge b){
+bool comparator(Edge a, Edge b)
+{
     return a.weight < b.weight;
 }
 
@@ -25,64 +28,79 @@ void unite(int u, int v)
     u = findParent(u);
     v = findParent(v);
 
-    parent[u] = v;
+    // Both vertices already belong to the same set
+    if (u == v)
+        return;
+
+    // Union by Rank
+    if (rankArr[u] < rankArr[v])
+    {
+        parent[u] = v;
+    }
+    else if (rankArr[u] > rankArr[v])
+    {
+        parent[v] = u;
+    }
+    else
+    {
+        parent[u] = v;
+        rankArr[v]++;
+    }
 }
 
 int main()
 {
     int V, E;
+    cin >> V >> E;
 
-    cin>>V>>E;
+    if (V <= 0 || V > 100 || E < 0)
+    {
+        cout << "Invalid input";
+        return 0;
+    }
 
     vector<Edge> edges;
-    for(int i = 0; i<E; i++){
+
+    for (int i = 0; i < E; i++)
+    {
         Edge e;
-        cin>> e.u >> e.v >> e.weight;
+        cin >> e.u >> e.v >> e.weight;
+
+        if (e.u < 0 || e.u >= V ||
+            e.v < 0 || e.v >= V)
+        {
+            cout << "Invalid vertex index";
+            return 0;
+        }
+
         edges.push_back(e);
     }
-    // vector<Edge> edges =
-    // {
-    //     {0, 1, 10},
-    //     {0, 2, 6},
-    //     {0, 3, 5},
-    //     {1, 3, 4},
-    //     {2, 3, 3}
-    // };
 
     // Initialize DSU
-    for (int i = 0; i < V; i++){
+    for (int i = 0; i < V; i++)
+    {
         parent[i] = i;
+        rankArr[i] = 0;
     }
 
-    // sort(edges.begin(), edges.end(), [](Edge a, Edge b){
-    //     return a.weight < b.weight;
-    // });
-
     // Sort edges by weight
-    sort(edges.begin(), edges.end(), comparater);
+    sort(edges.begin(), edges.end(), comparator);
 
     int cost = 0;
     int count = 0;
 
     for (Edge e : edges)
     {
-        // No cycle?
-        // If parent of both the vertex is same then cycle is forming
-        // if not then we can move ahead.
         if (findParent(e.u) != findParent(e.v))
         {
-            // now print u to v and weight
             cout << e.u << " - "
                  << e.v << " = "
-                 << e.weight << endl;
+                 << e.weight << '\n';
 
-            // calculate cost
             cost += e.weight;
 
-            // Update parent vector using unite function
             unite(e.u, e.v);
 
-            // count edge by incrementing count
             count++;
 
             if (count == V - 1)
@@ -90,7 +108,14 @@ int main()
         }
     }
 
-    cout << "MST Cost = " << cost;
+    if (count != V - 1)
+    {
+        cout << "MST cannot be formed because the graph is disconnected.\n";
+    }
+    else
+    {
+        cout << "MST Cost = " << cost << '\n';
+    }
 
     return 0;
 }

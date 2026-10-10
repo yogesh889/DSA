@@ -6,8 +6,7 @@
 
 using namespace std;
 
-int spanningTree(int V, vector<vector<int>> adj[], int stNode)
-{
+int spanningTree(int V, vector<vector<int>> adj[], int stNode){
 
     // Min heap: {weight, vertex}
 
