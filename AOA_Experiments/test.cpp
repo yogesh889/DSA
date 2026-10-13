@@ -1,69 +1,73 @@
-//Prims Algo
 #include<bits/stdc++.h>
 using namespace std;
 
-int primsAlgo(vector<vector<int>> graph[], int V, int stNode){
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    vector<bool> visited(V, false);
-    pq.push({0, stNode});
-    int minCost = 0;
-
-    while(!pq.empty()){
-        int u = pq.top().second;
-        int wt = pq.top().first;
-
-        pq.pop();
-
-        if(visited[u]){
-            continue;
-        }
-        visited[u] = true;
-        minCost += wt;
-        for(auto &neighbour: graph[u]){
-            int v = neighbour[0];
-            int weight = neighbour[1];
-            if(!visited[v]){
-                pq.push({weight, v});
+void printBoard(vector<vector<int>> &board, int N){
+    for(i15nt i=0; i<N; i++){
+        for(int j=0; j<N; j++){
+            if(board[i][j] == 1){
+                cout<<"Q ";
+            }else{
+                cout<<". ";
             }
         }
+        cout<<endl;
     }
-    return minCost;
+}
+
+bool isSafe(vector<vector<int>> &board, int row, int col, int N){
+    int i, j;
+    //check each and every above row of one column if queen is present or not
+    for(i=row; i>=0; i--){
+        if(board[i][col] == 1){
+            return false;
+        }
+    }
+
+    //check left diagonal
+    for(i=row-1, j=col-1; i>=0 && j>=0; i--, j--){
+        if(board[i][j] == 1){
+            return false;
+        }
+    }
+
+    //check right diagonal
+    for(i=row-1, j=col+1; i>=0 && j<N; i--, j++){
+        if(board[i][j] == 1){
+            return false;
+        }
+    }
+    return true;
+}
+
+bool solveQueen(vector<vector<int>> &board, int row, int N){
+    if(row == N){
+        return true;
+    }
+    for(int col=0; col<N; col++){
+        if(isSafe(board, row, col, N)){
+            board[row][col] = 1;
+            if(solveQueen(board, row+1, N)){
+                return true;
+            }
+            board[row][col] = 0;
+        }
+    }
+    return false;
 }
 
 int main(){
 
-    int V, E;
-    cout<<"Enter number of Vertices: ";
-    cin>>V;
+    int N;
+    cout<<"Enter number: ";
+    cin>>N;
 
-    cout<<"Enter number of Edges: ";
-    cin>>E;
+    vector<vector<int>> board(N, vector<int>(N, 0));
 
-    //Array of vector
-    vector<vector<int>> graph[V];
-
-    for(int i=0; i<E; i++){
-        int u, v, w;
-        cin>>u>>v>>w;
-        //Undirected graph
-        graph[u].push_back({v, w});
-        graph[v].push_back({u, w});
+    if(solveQueen(board, 0, N)){
+        printBoard(board, N);
+    }else{
+        cout<<"solution does not exist";
     }
-
-    cout<<"printing graph\n";
-    for(int i=0; i<V; i++){
-        cout<<i<<": ";
-        for(auto &neighbour: graph[i]){
-            cout<<neighbour[0]<<" "<<neighbour[1]<<", ";
-        }
-        cout<<endl;
-    }
-
-    int stNode;
-    cout<<"Enter starting Node: ";
-    cin>>stNode;
-
-    cout<<"MST Cost: "<<primsAlgo(graph, V, stNode);
 
     return 0;
 }
