@@ -1,32 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node
+{
+public:
     int data;
-        Node* next;
+    Node *next;
+    Node(int val)
+    {
+        data = val;
+        next = nullptr;
+    }
+};
 
-        Node(int data){
-            this->data = data;
-            this->next = nullptr;
-        }
+int main()
+{
 
-        void insert_at_specific_position(int value, int pos, Node* head){
-            Node* newNode = new Node(value);
+    Node n1(10);
+    Node n2(20);
+    Node n3(30);
+    n1->next = &n2;
+    n2->next = &n3;
+    cout<<n2->next->data;
 
-            if(pos == 1){
-                newNode->next = head;
-                head = newNode;
-                return;
-            }
-
-            Node* temp = head;
-
-            // traversing using loop
-            for(int i=1; i<pos-1 && temp!=nullptr; i++){
-                temp = temp->next;
-            }
-
-            if(temp == nullptr){
-                cout<<"Invalid position";
-                return;
-            }
-
-            newNode->next = temp->next;
-            temp->next = newNode;
-        }
+        return 0;
+}

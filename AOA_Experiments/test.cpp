@@ -1,72 +1,39 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-void printBoard(vector<vector<int>> &board, int N){
-    for(i15nt i=0; i<N; i++){
-        for(int j=0; j<N; j++){
-            if(board[i][j] == 1){
-                cout<<"Q ";
-            }else{
-                cout<<". ";
-            }
-        }
-        cout<<endl;
-    }
-}
+int main()
+{
+    // int V, E;
+    // cout << "Enter number of vertices: ";
+    // cin >> V;
+    // cout << "Enter number of edges: ";
+    // cin >> E;
 
-bool isSafe(vector<vector<int>> &board, int row, int col, int N){
-    int i, j;
-    //check each and every above row of one column if queen is present or not
-    for(i=row; i>=0; i--){
-        if(board[i][col] == 1){
-            return false;
-        }
-    }
+    // vector<vector<int>> graph[V];
+    // for (int i = 0; i < E; i++)
+    // {
+    //     int u, v, w;
+    //     cin >> u >> v >> w;
 
-    //check left diagonal
-    for(i=row-1, j=col-1; i>=0 && j>=0; i--, j--){
-        if(board[i][j] == 1){
-            return false;
-        }
-    }
+    //     graph[u].push_back({v, w});
+    //     graph[v].push_back({u, w});
+    // }
 
-    //check right diagonal
-    for(i=row-1, j=col+1; i>=0 && j<N; i--, j++){
-        if(board[i][j] == 1){
-            return false;
-        }
-    }
-    return true;
-}
+    // for(int i=0; i<V; i++){
+    //     cout<<i<<": ";
+    //     for(auto &neighbour: graph[i]){
+    //         cout<<neighbour[0]<<" "<<neighbour[1]<<", ";
+    //     }
+    //     cout<<endl;
+    // }
 
-bool solveQueen(vector<vector<int>> &board, int row, int N){
-    if(row == N){
-        return true;
-    }
-    for(int col=0; col<N; col++){
-        if(isSafe(board, row, col, N)){
-            board[row][col] = 1;
-            if(solveQueen(board, row+1, N)){
-                return true;
-            }
-            board[row][col] = 0;
-        }
-    }
-    return false;
-}
+    vector<int> vec(5);
 
-int main(){
+    // vec[3] = 5;
+    vec.push_back(5);
 
-    int N;
-    cout<<"Enter number: ";
-    cin>>N;
-
-    vector<vector<int>> board(N, vector<int>(N, 0));
-
-    if(solveQueen(board, 0, N)){
-        printBoard(board, N);
-    }else{
-        cout<<"solution does not exist";
+    for(int x: vec){
+        cout<<x<<" ";
     }
 
     return 0;

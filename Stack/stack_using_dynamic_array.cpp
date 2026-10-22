@@ -10,7 +10,6 @@ class DynamicStack {
 public:
 
     DynamicStack() {
-
         capacity = 2;
         arr = new int[capacity];
         top = -1;

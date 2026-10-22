@@ -61,18 +61,24 @@ int main()
 
     vector<Edge> edges;
 
+    // vector<Edge> edges = { 
+
+    //     {0, 1, 10}, 
+
+    //     {0, 2, 6}, 
+
+    //     {0, 3, 5}, 
+
+    //     {1, 3, 4}, 
+
+    //     {2, 3, 3} 
+
+    // }; 
+
     for (int i = 0; i < E; i++)
     {
         Edge e;
         cin >> e.u >> e.v >> e.weight;
-
-        if (e.u < 0 || e.u >= V ||
-            e.v < 0 || e.v >= V)
-        {
-            cout << "Invalid vertex index";
-            return 0;
-        }
-
         edges.push_back(e);
     }
 

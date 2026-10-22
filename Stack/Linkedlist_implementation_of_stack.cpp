@@ -13,7 +13,6 @@ public:
 };
 
 class Stack {
-
     Node* top;
 
 public:

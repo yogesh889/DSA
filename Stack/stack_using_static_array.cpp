@@ -20,7 +20,6 @@ public:
         }
         top++;
         arr[top] = value;
-        cout<<top<<"\n";
     }
 
     void pop() {
@@ -49,7 +48,7 @@ public:
 
     void display() {
 
-        for(int i=top; i>=0; i--) {
+        for(int i=top+1; i>=0; i--) {
             cout << arr[i] << endl;
         }
     }
@@ -58,7 +57,8 @@ public:
 int main() {
 
     Stack s;
-
+    cout<<s.peek();
+    cout<<endl;
     s.push(10);
     s.push(20);
     s.push(30);
