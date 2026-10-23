@@ -1,23 +1,65 @@
-#include<iostream>
-#include<vector>
+// #include<iostream>
+// #include<vector>
+// #include<stack>
+#include<bits/stdc++.h>
 using namespace std;
+
+class DynamicStack{
+    int* arr;
+    int top;
+    int capacity;
+    public: 
+        DynamicStack(){
+            capacity = 2;
+            arr = new int[capacity];
+            top = -1;
+        }
+
+        void push(int value){
+            if(top == capacity -1){
+                int* newArr = new int[capacity*2];
+                for(int i=0; i<capacity; i++){
+                    newArr[i] = arr[i];
+                }
+                delete[] arr;
+                arr = newArr;
+                capacity *= 2;
+            }
+            top++;
+            arr[top] = value;
+        }
+        void pop(){
+            if(top == -1){
+                cout<<"underflow \n";
+                return;
+            }
+            top--;
+        }
+        int peek(){
+            if(top == -1){
+                return -1;
+            }
+            return arr[top];
+        }
+        void display(){
+            for(int i=top; i>=0; i--){
+                cout<<arr[i]<<endl;
+            }
+        }
+        ~DynamicStack(){
+            delete[] arr;
+        }
+};
 
 int main(){
 
-    // int arr1[5];
-    // int* arr2[5];
+    DynamicStack s;
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
 
-    // int* arr4 = new int[5];
-
-    // arr4[0] = 5;
-    // cout<<arr4[0]<<endl;
-
-    vector<int> vec;
-    vec.push_back(20);
-    vec.push_back(30);
-    cout<<vec.back();
-    vec.pop_back();
-    cout<<vec.back();
+    s.display();
 
     return 0;
 }
