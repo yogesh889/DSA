@@ -1,60 +1,71 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define INF 99999
 
-int main(){
-
-    int V, E;
-    cout<<"Enter vertices: ";
-    cin>>V;
-    cout<<"Enter Edges: ";
-    cin>>E;
-
-    vector<vector<int>> edges;
-
-    for(int i=0; i<E; i++){
-        int u, v, w;
-        cin>>u>>v>>w;
-        edges.push_back({u, v, w});
-    }
-
-    cout<<"Printing Edge List \n";
-    for(auto &x: edges){
-        cout<<x[0]<<" "<<x[1]<<": "<<x[2]<<endl;
-    }
-
-    vector<vector<int>> dist(V, vector<int> (V, INF));
-
-    for(int i=0; i<V; i++){
-        dist[i][i] = 0;
-    }
-
-    for(auto &edge: edges){
-        int u = edge[0];
-        int v = edge[1];
-        int w = edge[2];
-        dist[u][v] = w;
-        // dist[v][u] = w;
-    }
-
-    for(int k=0; k<V; k++){
-        for(int i=0; i<V; i++){
-            for(int j=0; j<V; j++){
-                dist[i][j] = min(dist[i][j], dist[i][k]+dist[k][j]);
-            }
-        }
-    }
-
-    cout<<"Enter distance matrix \n";
-    for(int i=0; i<V; i++){
-        for(int j=0; j<V; j++){
-            if(dist[i][j] == INF){
-                cout<<"INF ";
+void printBoard(vector<vector<int>> &board, int N){
+    for(int i=0; i<N; i++){
+        for(int j=0; j<N; j++){
+            if(board[i][j] == 1){
+                cout<<"Q ";
             }else{
-                cout<<" "<<dist[i][j]<<"   ";
+                cout<<". ";
             }
         }
         cout<<endl;
+    }
+}
+
+bool isSafe(vector<vector<int>> &board, int row, int col, int N){
+    int i, j;
+    for(i=row; i>=0; i--){
+        if(board[i][col] == 1){
+            return false;
+        }
+    }
+
+    //left diagonal;
+    for(i=row, j=col; i>=0 && j>=0; i--, j--){
+        if(board[i][j] == 1){
+            return false;
+        }
+    }
+
+    //Right diagonal
+    for(i=row, j=col; i>=0 && j<N; i--, j++){
+        if(board[i][j] == 1){
+            return false;
+        }
+    }
+    return true;
+}
+
+bool solveQueen(vector<vector<int>> &board, int row, int N){
+    if(row == N){
+        return true;
+    }
+    for(int col=0; col<N; col++){
+        if(isSafe(board, row, col, N)){
+            board[row][col] = 1;
+            if(solveQueen(board, row+1, N)){
+                return true;
+            }
+            board[row][col] = 0;
+        }
+    }
+    return false;
+}
+
+int main(){
+
+    int N;
+    cout<<"Enter N: ";
+    cin>>N;
+
+    vector<vector<int>> board(N, vector<int>(N, 0));
+
+    if(solveQueen(board, 0, N)){
+        printBoard(board, N);
+    }else{
+        cout<<"Solution does not exist";
     }
 
     return 0;

@@ -1,63 +1,26 @@
-#include<iostream>
+//monotonic stack by only using elements in stack;
+
+#include<bits/stdc++.h>
 using namespace std;
 
-class Stack{ 
-    int arr[5];
-    int top;
-
-    public:
-        Stack(){
-            top = -1;
+vector<int> monotonicStack(vector<int> &arr, int n){
+    stack<int> st; //stores only elements
+    for(int i=0; i<n; i++){
+        while(!st.empty() && st.top()<arr[i]){
+            st.pop();
         }
-        void push(int val){
-            if(top == 4){
-                cout<<"Stack is overflow";
-            }
-            top++;
-            arr[top] = val;
-            cout<<top<<" ";
-        }
+        st.push(arr[i]);
+    }
 
-        void pop(){
-            top--;
-        }
-
-        void peek(){
-            cout<<arr[top]<<" ";
-        }
-
-        bool isEmpty(){
-            if(top == -1){
-                return true;
-            }
-        }
-
-        void display(){
-            for(int i=top; i>=0; i--){
-                cout<<arr[i]<<" ";
-            }
-        }
-
-};
+}
 
 int main(){
-    Stack s;
 
-    s.push(10);
-    s.push(20);
-    s.push(30);
+    vector<int> arr = {2, 4, 1, 0, 9};
 
-    s.display();
+    int n = arr.size();
 
-    cout<<endl;
-
-    s.pop();
-    s.display();
-
-    cout<<endl;
-    s.peek();
-
-    cout<<s.isEmpty()<<" ";
-
+    monotonicStack(arr, n);
+    
     return 0;
 }
