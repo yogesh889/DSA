@@ -3,6 +3,7 @@
 #include <stack>
 using namespace std;
 
+
 vector<int> nextGreaterElement(vector<int> &arr)
 {
     int n = arr.size();

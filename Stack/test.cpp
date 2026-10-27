@@ -3,15 +3,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int> monotonicStack(vector<int> &arr, int n){
-    stack<int> st; //stores only elements
+vector<int> monotonicIncStack(vector<int> &arr, int n){
+    stack<int> st;
     for(int i=0; i<n; i++){
-        while(!st.empty() && st.top()<arr[i]){
+        while(!st.empty() && st.top()<= arr[i]){
             st.pop();
         }
         st.push(arr[i]);
     }
-
+    return st;
 }
 
 int main(){
@@ -20,7 +20,12 @@ int main(){
 
     int n = arr.size();
 
-    monotonicStack(arr, n);
-    
+    stack<int> ans = monotonicIncStack(arr, n);
+
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+
     return 0;
 }
