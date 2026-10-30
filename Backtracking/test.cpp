@@ -1,30 +1,69 @@
-#include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-void solve(int arr[], int index, int n)
-{
-    // Base case
-    if(index == n)
-        return;
-
-    // Going DOWN the recursion stack
-    arr[index] = 1;
-
-    cout<<arr[index]<<" ";
-
-    solve(arr, index + 1, n);
-
-    // Backtracking / coming UP
-    arr[index] = 2;
-    
-    cout<<arr[index]<<" ";
+void printBoard(vector<vector<int>> &board, int n){
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            if(board[i][j] == 1){
+                cout<<"Q ";
+            }else{
+                cout<<". ";
+            }
+        }
+        cout<<endl;
+    }
 }
 
-int main()
-{
-    int arr[5] = {0, 0, 0, 0, 0};
+bool isSafe(vector<vector<int>> &board, int row, int col, int n){
+    int i, j;
+    for(int i=row; i>=0; i--){
+        if(board[i][col] == 1){
+            return false;
+        }
+    }
+    for(i=row, j=col; i>=0 && j>=0; i--, j--){
+        if(board[i][j] == 1){
+            return false;
+        }
+    }
+    for(i=row, j=col; i>=0 && j<n; i--, j++){
+        if(board[i][j] == 1){
+            return false;
+        }
+    }
+    return true;
+}
 
-    solve(arr, 0, 5);
+bool solveQueen(vector<vector<int>> &board, int n, int row){
+    if(row == n){
+        return true;
+    }
+
+    for(int col = 0; col<n; col++){
+        if(isSafe(board, row, col, n)){
+            board[row][col] = 1;
+            if(solveQueen(board, n, row+1)){
+                return true;
+            }
+            board[row][col] = 0;
+        }
+    }
+    return false;
+}
+
+int main(){
+
+    int n;
+    cout<<"Enter n: ";
+    cin>>n;
+
+    vector<vector<int>> board(n, vector<int> (n, 0));
+
+    if(solveQueen(board, n, 0)){
+        printBoard(board, n);
+    }else{
+        cout<<"solution does not exist";
+    }
 
     return 0;
 }

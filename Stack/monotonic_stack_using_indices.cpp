@@ -12,17 +12,18 @@ vector<int> nextGreaterElement(vector<int> &arr)
 
     for (int i = n - 1; i >= 0; i--)
     {
-        while (!st.empty() && arr[st.top()] <= arr[i])
+        while (!st.empty() && st.top() <= arr[i])
         {
             st.pop();
         }
 
         if (!st.empty())
         {
-            ans[i] = arr[st.top()]; // Return element
+            ans[i] = st.top();
+            // ans[i] = arr[st.top()]; // Return element
         }
 
-        st.push(i);
+        st.push(arr[i]);
     }
 
     return ans;

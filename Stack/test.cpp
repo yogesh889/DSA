@@ -1,31 +1,45 @@
-//monotonic stack by only using elements in stack;
-
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int> monotonicIncStack(vector<int> &arr, int n){
+void monotonicIncStack(vector<int> &arr, int n){
     stack<int> st;
     for(int i=0; i<n; i++){
-        while(!st.empty() && st.top()<= arr[i]){
+        while(!st.empty() && st.top()>=arr[i]){
             st.pop();
         }
         st.push(arr[i]);
     }
-    return st;
+    cout<<"Monotonic Increasing Stack \n";
+    while(!st.empty()){
+        cout<<st.top()<<endl;
+        st.pop();
+    }
+}
+
+void monotonicDecStack(vector<int> &arr, int n){
+    stack<int> st;
+    for(int i=0; i<n; i++){
+        while(!st.empty() && st.top()<=arr[i]){
+            st.pop();
+        }
+        st.push(arr[i]);
+    }
+    cout<<"Monotonic Decreasing Stack \n";
+    while(!st.empty()){
+        cout<<st.top()<<endl;
+        st.pop();
+    }
 }
 
 int main(){
 
-    vector<int> arr = {2, 4, 1, 0, 9};
+    cout<<"Monotonic Inc, Dec Stack when iteration starts from left to right \n";
+    vector<int> arr = {7, 4, 2, 0};
 
     int n = arr.size();
 
-    stack<int> ans = monotonicIncStack(arr, n);
-
-    while(!st.empty()){
-        cout<<st.top()<<" ";
-        st.pop();
-    }
+    monotonicIncStack(arr, n);
+    monotonicDecStack(arr, n);
 
     return 0;
 }
