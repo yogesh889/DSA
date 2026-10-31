@@ -1,72 +1,115 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <climits>
+
 using namespace std;
 
-void printBoard(vector<vector<int>> &board, int N){
-    for(int i=0; i<N; i++){
-        for(int j=0; j<N; j++){
-            if(board[i][j] == 1){
-                cout<<"Q ";
-            }else{
-                cout<<". ";
+class Solution
+{
+public:
+    // Function to find the shortest distance of all vertices from source S
+    vector<int> dijkstra(int V, vector<vector<int>> adj[], int S)
+    {
+
+        // 1. Min-Heap Priority Queue to store {distance, node}
+        priority_queue<
+            pair<int, int>,
+            vector<pair<int, int>>,
+            greater<pair<int, int>>>
+            pq;
+
+        // 2. Result array initialized with infinity
+        vector<int> result(V, INT_MAX);
+
+        // 3. Distance from source to itself is 0
+        result[S] = 0;
+        pq.push({0, S});
+
+        // 4. Process nodes using Min-Heap
+        while (!pq.empty())
+        {
+
+            int d = pq.top().first;
+            int node = pq.top().second;
+            pq.pop();
+
+            // Ignore outdated distance
+            if (d > result[node])
+            {
+                continue;
+            }
+
+            // 5. Check all adjacent vertices
+            for (auto &vec : adj[node])
+            {
+
+                int adjNode = vec[0];
+                int dist = vec[1];
+
+                // 6. Relaxation Step
+                if (d + dist < result[adjNode])
+                {
+
+                    result[adjNode] = d + dist;
+
+                    pq.push({d + dist, adjNode});
+                }
             }
         }
-        cout<<endl;
-    }
-}
 
-bool isSafe(vector<vector<int>> &board, int row, int col, int N){
-    int i, j;
-    for(i=row; i>=0; i--){
-        if(board[i][col] == 1){
-            return false;
-        }
-    }
-
-    //left diagonal;
-    for(i=row, j=col; i>=0 && j>=0; i--, j--){
-        if(board[i][j] == 1){
-            return false;
-        }
-    }
-
-    //Right diagonal
-    for(i=row, j=col; i>=0 && j<N; i--, j++){
-        if(board[i][j] == 1){
-            return false;
-        }
-    }
-    return true;
-}
-
-bool solveQueen(vector<vector<int>> &board, int row, int N){
-    if(row == N){
-        return true;
-    }
-    for(int col=0; col<N; col++){
-        if(isSafe(board, row, col, N)){
-            board[row][col] = 1;
-            if(solveQueen(board, row+1, N)){
-                return true;
+        // 7. Convert unreachable vertices to -1
+        for (int i = 0; i < V; i++)
+        {
+            if (result[i] == INT_MAX)
+            {
+                result[i] = -1;
             }
-            board[row][col] = 0;
         }
+
+        return result;
     }
-    return false;
-}
+};
 
-int main(){
+int main()
+{
 
-    int N;
-    cout<<"Enter N: ";
-    cin>>N;
+    // Number of vertices and edges
+    int V, E;
+    cin >> V >> E;
 
-    vector<vector<int>> board(N, vector<int>(N, 0));
+    // Adjacency list representation
+    vector<vector<int>> adj[V];
 
-    if(solveQueen(board, 0, N)){
-        printBoard(board, N);
-    }else{
-        cout<<"Solution does not exist";
+    // Input edges
+    for (int i = 0; i < E; i++)
+    {
+
+        int u, v, w;
+        cin >> u >> v >> w;
+
+        // Undirected graph
+        adj[u].push_back({v, w});
+        adj[v].push_back({u, w});
     }
+
+    // Source vertex
+    int S;
+    cin >> S;
+
+    // Instantiate Solution class
+    Solution obj;
+
+    // Call Dijkstra's algorithm
+    vector<int> shortest_distances = obj.dijkstra(V, adj, S);
+
+    // Print shortest distances
+    for (int i = 0; i < V; i++)
+    {
+        cout << shortest_distances[i] << " ";
+    }
+
+    cout << endl;
 
     return 0;
 }
