@@ -1,0 +1,116 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class HashTable {
+
+    int size;
+    int* table;
+
+public:
+
+    HashTable(int s) {
+        size = s;
+
+        table = new int[size];
+
+        for(int i = 0; i < size; i++) {
+            table[i] = -1;
+        }
+    }
+
+    // Hash Function
+    int hashFunction(int key) {
+        return key % size;
+    }
+
+    // Insert
+    void insert(int key) {
+
+        int index = hashFunction(key);
+
+        int start = index;
+
+        // Linear Probing
+        while(table[index] != -1) {
+
+            index = (index + 1) % size;
+
+            // Table is full
+            if(index == start) {
+                cout << "Hash Table is Full!" << endl;
+                return;
+            }
+        }
+
+        table[index] = key;
+
+        cout << key << " inserted at index " << index << endl;
+    }
+
+    // Search
+    bool search(int key) {
+
+        int index = hashFunction(key);
+
+        int start = index;
+
+        while(table[index] != -1) {
+
+            if(table[index] == key) {
+                return true;
+            }
+
+            index = (index + 1) % size;
+
+            if(index == start) {
+                break;
+            }
+        }
+
+        return false;
+    }
+
+    // Display
+    void display() {
+
+        for(int i = 0; i < size; i++) {
+
+            cout << i << " -> ";
+
+            if(table[i] == -1)
+                cout << "EMPTY";
+            else
+                cout << table[i];
+
+            cout << endl;
+        }
+    }
+
+    ~HashTable() {
+        delete[] table;
+    }
+};
+
+int main() {
+
+    HashTable ht(7);
+
+    ht.insert(10);
+    ht.insert(20);
+    ht.insert(15);
+    ht.insert(7);
+    ht.insert(17);
+
+    cout << "\nHash Table:\n";
+
+    ht.display();
+
+    cout << "\nSearching 17: ";
+
+    if(ht.search(17))
+        cout << "Found";
+    else
+        cout << "Not Found";
+
+    return 0;
+}

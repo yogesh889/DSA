@@ -11,7 +11,7 @@ void printBoard(vector<vector<int>> &board, int N){
             }
         }
         cout<<endl;
-    }
+    } 
 }
 
 bool isSafe(vector<vector<int>> &board, int row, int col, int N){
